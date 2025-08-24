@@ -1,24 +1,39 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
-import starlight from '@astrojs/starlight';
+
+import starlight from "@astrojs/starlight";
+import { defineConfig } from "astro/config";
+import starlightBlog from "starlight-blog";
+import starlightThemeFlexoki from "starlight-theme-flexoki";
 
 // https://astro.build/config
 export default defineConfig({
 	integrations: [
 		starlight({
-			title: 'My Docs',
-			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/withastro/starlight' }],
-			sidebar: [
+			plugins: [
+				starlightBlog({
+					title: "thoughts",
+					authors: {
+						crnvl96: {
+							name: "Adran Carnavale",
+							title: "Full stack programmer",
+							picture: "https://avatars.githubusercontent.com/u/84354013?v=4",
+							url: "mailto:adran@hey.com",
+						},
+					},
+				}),
+				starlightThemeFlexoki(),
+			],
+			title: "Crnvl96",
+			logo: {
+				light: "./src/assets/light-logo.svg",
+				dark: "./src/assets/dark-logo.svg",
+				replacesTitle: true,
+			},
+			social: [
 				{
-					label: 'Guides',
-					items: [
-						// Each item here is one entry in the navigation menu.
-						{ label: 'Example Guide', slug: 'guides/example' },
-					],
-				},
-				{
-					label: 'Reference',
-					autogenerate: { directory: 'reference' },
+					icon: "github",
+					label: "GitHub",
+					href: "https://github.com/crnvl96",
 				},
 			],
 		}),
