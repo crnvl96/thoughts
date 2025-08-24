@@ -7,6 +7,7 @@ import starlightThemeFlexoki from "starlight-theme-flexoki";
 
 // https://astro.build/config
 export default defineConfig({
+	site: "https://crnvl96.dev",
 	integrations: [
 		starlight({
 			plugins: [
