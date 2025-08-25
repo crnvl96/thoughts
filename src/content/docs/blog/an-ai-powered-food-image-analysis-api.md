@@ -4,6 +4,8 @@ title: An AI-Powered Food Image Analysis API
 featured: false
 tags:
   - Projects
+  - Python
+  - AI
 authors:
   - crnvl96
 ---

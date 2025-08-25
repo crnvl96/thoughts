@@ -4,6 +4,8 @@ title: Effortless Docker Management in Neovim with lazydocker.nvim
 featured: true
 tags:
   - Projects
+  - Lua
+  - Neovim
 authors:
   - crnvl96
 ---
