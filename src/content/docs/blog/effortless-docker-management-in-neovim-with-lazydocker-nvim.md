@@ -1,7 +1,7 @@
 ---
 date: 2025-08-24
 title: Effortless Docker Management in Neovim with lazydocker.nvim
-featured: true
+featured: false
 tags:
   - Projects
   - Lua

@@ -1,7 +1,7 @@
 ---
 date: 2025-07-30
 title: Building Scalable Event-Driven Architectures with AWS CDK
-featured: true
+featured: false
 tags:
   - AWS
   - Python
