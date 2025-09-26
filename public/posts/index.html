@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Posts | Thoughts</title>
+    <link rel="stylesheet" href="/css/style.css">
+    
+</head>
+<body>
+    <header>
+        <h1><a href="http://localhost:1313/">Thoughts</a></h1>
+    </header>
+    <main>
+        
+<h1>Posts</h1>
+
+<article>
+    <h2><a href="/posts/concurrency-in-go/">Concurrency in Go</a></h2>
+    <time>26 Sep 2025</time>
+    <p><p>Concurrency in Go (via goroutines) can improve performance by allowing efficient multitasking, even on a single CPU core, primarily through better resource utilization and responsiveness. Here&rsquo;s how it works and addresses your
+example:</p>
+<h3 id="key-concepts">Key Concepts</h3>
+<p>Concurrency vs. Parallelism: Concurrency is about structuring a program to handle multiple tasks simultaneously (e.g., via goroutines), while parallelism is about executing them at the same time on multiple CPU cores. Go&rsquo;s
+runtime scheduler interleaves goroutines quickly (often in microseconds), making it feel concurrent even if only one core is active.</p></p>
+</article>
+
+<article>
+    <h2><a href="/posts/lua-ls-type-annotations-guide/">LuaLS type annotations</a></h2>
+    <time>31 Aug 2025</time>
+    <p><p>Lua&rsquo;s dynamic nature makes it incredibly flexible, but this flexibility can sometimes lead to hard-to-debug type errors. The Lua Language Server (LuaLS) introduces a powerful type annotation system called <strong>LuaCATS</strong> (Lua Comment And Type System) that brings type safety and intelligent code assistance to Lua development.</p>
+<blockquote>
+<p>Check out the <a href="https://luals.github.io/wiki/annotations/">official documentation</a> for more</p></blockquote>
+<h2 id="what-are-luals-annotations">What are LuaLS Annotations?</h2>
+<p>LuaLS annotations are special comments prefixed with <code>---</code> (three dashes) that provide type information to the language server. These annotations help the server understand your code better, enabling features like:</p></p>
+</article>
+
+<article>
+    <h2><a href="/posts/effortless-docker-management-in-neovim-with-lazydocker-nvim/">Effortless Docker Management in Neovim with lazydocker.nvim</a></h2>
+    <time>24 Aug 2025</time>
+    <p><p>lazydocker.nvim is my personal Neovim plugin project that brings the power of lazydocker directly into your editor workflow</p>
+<blockquote>
+<p>Check out the project <a href="https://github.com/crnvl96/lazydocker.nvim">source code</a> on Github</p></blockquote>
+<p>Docker containers have become essential in modern development workflows, enabling consistent environments, simplified dependency management, and reproducible builds across different systems. However, managing these containers through Docker&rsquo;s native CLI can be time-consuming and context-switch heavy, especially when you need to frequently check logs, monitor resource usage, or restart services during development.</p></p>
+</article>
+
+<article>
+    <h2><a href="/posts/building-scalable-event-driven-architectures-with-aws-cdk/">Building Scalable Event-Driven Architectures with AWS CDK</a></h2>
+    <time>30 Jul 2025</time>
+    <p><p>AWS CDK transforms infrastructure management from a manual, error-prone process into a software engineering discipline. By using familiar programming languages and concepts, teams can build complex, reliable cloud architectures with confidence. The ability to create reusable constructs, write tests, and leverage IDE tools makes CDK an essential tool for modern cloud development.</p>
+<p>Whether you&rsquo;re building a simple storage solution or a complex event-driven microservices architecture, CDK provides the abstraction and power needed to manage cloud infrastructure effectively. The days of manually clicking through AWS consoles or maintaining giant CloudFormation templates are over - welcome to the future of infrastructure as code.</p></p>
+</article>
+
+<article>
+    <h2><a href="/posts/an-ai-powered-food-image-analysis-api/">An AI-Powered Food Image Analysis API</a></h2>
+    <time>11 May 2025</time>
+    <p><p>DietLogApp is a powerful, AI-driven application designed to analyze food images and provide detailed nutritional feedback. Built with FastAPI, this application serves as a backend API that can be integrated into various health and wellness applications. It leverages the capabilities of Anthropic&rsquo;s Claude 3.5 Sonnet model to understand and interpret food images, offering users a comprehensive breakdown of their meals.</p>
+<blockquote>
+<p>Check out the project <a href="https://github.com/crnvl96/dietlog-api">source code</a> on Github</p></blockquote>
+<p>This post will take you on a deep dive into the DietLogApp, exploring its features, architecture, and how you can get it up and running on your local machine.</p></p>
+</article>
+
+<article>
+    <h2><a href="/posts/contributing-eslint-support-to-nvim-lspconfig/">Contributing ESLint Support to nvim-lspconfig</a></h2>
+    <time>27 Apr 2025</time>
+    <p><p>My recent contribution to the neovim/nvim-lspconfig repository adds comprehensive ESLint language server support using the modern <code>vim.lsp.config</code> API. This pull request addresses issue #3705 and provides a seamless integration for JavaScript and TypeScript developers using Neovim.</p>
+<blockquote>
+<p>Check out the <a href="https://github.com/neovim/nvim-lspconfig/pull/3731">pull request #3731</a> on GitHub</p></blockquote>
+<h2 id="the-context-modernizing-nvim-lspconfig">The Context: Modernizing nvim-lspconfig</h2>
+<p>nvim-lspconfig is the official Neovim plugin that provides quickstart configurations for Language Server Protocol (LSP) clients. With the release of Neovim 0.11+, the project has been transitioning from the legacy <code>require'lspconfig'.setup{}</code> pattern to the new <code>vim.lsp.config</code> API. This modernization effort requires updating all existing configurations to use the new pattern.</p></p>
+</article>
+
+
+    </main>
+    <footer>
+        <p>&copy; 2025 Thoughts</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            mermaid.initialize({ startOnLoad: true });
+        });
+    </script>
+</body>
+</html>

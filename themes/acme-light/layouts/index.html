@@ -1,0 +1,10 @@
+{{ define "main" }}
+<h1>{{ .Site.Title }}</h1>
+{{ range .Site.RegularPages }}
+<article>
+    <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+    <time>{{ .Date.Format "2 Jan 2006" }}</time>
+    <!-- <p>{{ .Summary | truncate 100 }}</p> -->
+</article>
+{{ end }}
+{{ end }}

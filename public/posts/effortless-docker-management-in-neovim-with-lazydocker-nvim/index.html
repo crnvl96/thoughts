@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Effortless Docker Management in Neovim with lazydocker.nvim | Thoughts</title>
+    <link rel="stylesheet" href="/css/style.css">
+    
+</head>
+<body>
+    <header>
+        <h1><a href="http://localhost:1313/">Thoughts</a></h1>
+    </header>
+    <main>
+        
+<article>
+    <h1>Effortless Docker Management in Neovim with lazydocker.nvim</h1>
+    <time>24 Aug 2025</time>
+    <p>lazydocker.nvim is my personal Neovim plugin project that brings the power of lazydocker directly into your editor workflow</p>
+<blockquote>
+<p>Check out the project <a href="https://github.com/crnvl96/lazydocker.nvim">source code</a> on Github</p></blockquote>
+<p>Docker containers have become essential in modern development workflows, enabling consistent environments, simplified dependency management, and reproducible builds across different systems. However, managing these containers through Docker&rsquo;s native CLI can be time-consuming and context-switch heavy, especially when you need to frequently check logs, monitor resource usage, or restart services during development.</p>
+<p>This is where tools like <a href="https://github.com/jesseduffield/lazydocker">lazydocker</a> come in, providing a terminal-based UI that visualizes container relationships, simplifies common operations, and offers real-time monitoring - all without leaving the terminal. lazydocker solves the problem of Docker management complexity by offering an intuitive interface that makes container operations accessible and efficient.</p>
+<p>But what if you could bring that convenience directly into your favorite editor, Neovim? Here enters the role of <a href="https://github.com/crnvl96/lazydocker.nvim">lazydocker.nvim</a>, a simple and straightforward Neovim plugin that seamlessly integrates lazydocker into your development workflow.</p>
+<h2 id="what-is-lazydockernvim">What is lazydocker.nvim?</h2>
+<p><code>lazydocker.nvim</code> is a Lua-based Neovim plugin that allows you to open lazydocker in a floating window without ever leaving your editor. This means you can quickly check on your containers, view logs, or manage services, and then get right back to your code with a single keystroke.</p>
+<p>This is a personal project of mine that I&rsquo;ve developed to solve my own Docker management workflow needs. As a developer who spends most of my time in Neovim, I wanted a seamless way to manage containers without context switching. This plugin represents my approach to creating simple, effective tools that enhance developer productivity.</p>
+<h2 id="key-features">Key Features</h2>
+<ul>
+<li><strong>Floating Window Integration:</strong> Opens lazydocker in a customizable floating window, keeping you in the Neovim environment.</li>
+<li><strong>Docker and Podman Support:</strong> Whether you&rsquo;re using Docker or Podman, <code>lazydocker.nvim</code> has you covered. You can easily configure it to use your preferred container engine.</li>
+<li><strong>Simple Configuration:</strong> The plugin comes with sensible defaults, but you can easily customize the floating window&rsquo;s size, border, and position to your liking.</li>
+<li><strong>Easy to Use:</strong> With a single command or keymap, you can toggle the lazydocker window, making it incredibly efficient to use.</li>
+<li><strong>Lightweight and Dependency-Free:</strong> The latest version of the plugin has removed its dependencies, making it even more lightweight and easier to maintain.</li>
+</ul>
+<h2 id="installation-and-configuration">Installation and Configuration</h2>
+<p>You can install <code>lazydocker.nvim</code> using your favorite Neovim plugin manager. Here&rsquo;s an example using <code>lazy.nvim</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#39;crnvl96/lazydocker.nvim&#39;</span>,
+</span></span><span style="display:flex;"><span>  config <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>()
+</span></span><span style="display:flex;"><span>    require(<span style="color:#e6db74">&#39;lazydocker&#39;</span>).setup({
+</span></span><span style="display:flex;"><span>      window <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        settings <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>          width <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.8</span>, <span style="color:#75715e">-- 80% of screen width</span>
+</span></span><span style="display:flex;"><span>          height <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.8</span>, <span style="color:#75715e">-- 80% of screen height</span>
+</span></span><span style="display:flex;"><span>          border <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;rounded&#39;</span>,
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>,
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="usage">Usage</h2>
+<p>The plugin exposes a <code>toggle</code> function that you can map to a key of your choice. It&rsquo;s recommended to map it in both normal and terminal modes, as lazydocker runs inside a terminal buffer.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span><span style="color:#75715e">-- For Docker</span>
+</span></span><span style="display:flex;"><span>vim.keymap.set(
+</span></span><span style="display:flex;"><span>	{ <span style="color:#e6db74">&#34;n&#34;</span>, <span style="color:#e6db74">&#34;t&#34;</span> },
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;&lt;leader&gt;ld&#34;</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;&lt;Cmd&gt;lua require(&#39;lazydocker&#39;).toggle({ engine = &#39;docker&#39; })&lt;CR&gt;&#34;</span>,
+</span></span><span style="display:flex;"><span>	{ desc <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;LazyDocker (docker)&#34;</span> }
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- For Podman</span>
+</span></span><span style="display:flex;"><span>vim.keymap.set(
+</span></span><span style="display:flex;"><span>	{ <span style="color:#e6db74">&#34;n&#34;</span>, <span style="color:#e6db74">&#34;t&#34;</span> },
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;&lt;leader&gt;lp&#34;</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;&lt;Cmd&gt;lua require(&#39;lazydocker&#39;).toggle({ engine = &#39;podman&#39; })&lt;CR&gt;&#34;</span>,
+</span></span><span style="display:flex;"><span>	{ desc <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;LazyDocker (podman)&#34;</span> }
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><p>With these keymaps, you can press <code>&lt;leader&gt;ld</code> or <code>&lt;leader&gt;lp</code> to open and close the lazydocker window.</p>
+<h2 id="how-the-toggle-function-works">How the Toggle Function Works</h2>
+<p>The <code>toggle</code> function is the core of <code>lazydocker.nvim</code>&rsquo;s user experience. Here&rsquo;s a detailed breakdown of how it operates:</p>
+<h3 id="core-logic">Core Logic</h3>
+<p>The toggle function follows a simple but effective pattern:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">LazyDocker</span>.<span style="color:#a6e22e">toggle</span>(opts)
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">-- Attempt to close first. If close() returns false, it means</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">-- the window wasn&#39;t open (or the handle was invalid), so open it.</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> LazyDocker.close() <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>		LazyDocker.open(opts)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><h3 id="state-management">State Management</h3>
+<p>The plugin uses global variables to track state:</p>
+<ul>
+<li><code>_G.__LazyDocker_Window_Handle</code>: Stores the window handle of the active lazydocker instance</li>
+<li><code>_G.__LazyDocker_Process_JobID</code>: Stores the Job ID of the running lazydocker process</li>
+</ul>
+<h3 id="open-operation">Open Operation</h3>
+<p>When opening:</p>
+<ol>
+<li><strong>Validation</strong>: Validates the engine option (&lsquo;docker&rsquo; or &lsquo;podman&rsquo;)</li>
+<li><strong>Focus Existing</strong>: If a window is already open, focuses it instead of creating a new one</li>
+<li><strong>Prerequisite Checks</strong>: Verifies both the container engine and lazydocker executables are available</li>
+<li><strong>Cleanup</strong>: Stops any hanging lazydocker jobs from previous sessions</li>
+<li><strong>Window Creation</strong>: Creates a floating window with customized dimensions and borders</li>
+<li><strong>Process Launch</strong>: Starts the lazydocker process in a terminal within the window</li>
+<li><strong>Auto-cleanup</strong>: Sets up autocommands to clean up when the window or buffer is closed</li>
+</ol>
+<h3 id="close-operation">Close Operation</h3>
+<p>When closing:</p>
+<ol>
+<li>Checks if the stored window handle is valid using <code>vim.api.nvim_win_is_valid()</code></li>
+<li>If valid, closes the window with <code>vim.api.nvim_win_close(win_handle, true)</code></li>
+<li>Clears the window handle reference</li>
+<li>Returns <code>true</code> if a window was closed, <code>false</code> otherwise</li>
+</ol>
+<h3 id="process-management">Process Management</h3>
+<p>The plugin uses Neovim&rsquo;s job control API:</p>
+<ul>
+<li><code>vim.fn.jobstart()</code> to launch lazydocker</li>
+<li><code>vim.fn.jobstop()</code> to terminate hanging processes</li>
+<li><code>vim.fn.jobwait()</code> to check process status</li>
+</ul>
+<h3 id="auto-cleanup-system">Auto-cleanup System</h3>
+<p>Autocommands ensure proper cleanup:</p>
+<ul>
+<li><code>BufWipeout</code>: Cleans up when the terminal buffer is destroyed</li>
+<li><code>WinClosed</code>: Cleans up when the window is closed</li>
+<li>Both trigger job termination and state reset</li>
+</ul>
+<p>This robust implementation ensures that <code>lazydocker.nvim</code> provides a seamless, reliable toggle experience without leaving orphaned processes or windows.</p>
+<h2 id="project-philosophy-simplicity-and-maintainability">Project Philosophy: Simplicity and Maintainability</h2>
+<p><strong>lazydocker.nvim</strong> is built with a strong emphasis on simplicity and long-term maintainability. The plugin follows a minimalist approach, focusing on doing one thing well without unnecessary complexity or dependencies.</p>
+<h3 id="documentation-as-a-priority">Documentation as a Priority</h3>
+<p>Documentation has been taken very seriously from the start. The plugin uses <a href="https://github.com/echasnovski/mini.doc">mini.doc</a> to ensure comprehensive and accessible documentation. Every function is properly documented with parameter descriptions, return values, and usage examples, making the codebase self-documenting and easier to maintain.</p>
+<h3 id="testing-strategy">Testing Strategy</h3>
+<p>For testing, I&rsquo;ve chosen <a href="https://github.com/echasnovski/mini.test">mini.test</a> with a sophisticated mocking approach that reliably simulates Neovim functions and external dependencies. This strategy enables comprehensive unit testing without requiring actual Docker or lazydocker installations, ensuring tests are fast, reliable, and can run in any environment.</p>
+<h4 id="mocking-architecture">Mocking Architecture</h4>
+<p>The mocking system is implemented through a structured approach in <code>tests/mocks.lua</code> that provides:</p>
+<ol>
+<li><strong>Function Replacement</strong>: Each mock replaces a specific Neovim API function with a controlled implementation</li>
+<li><strong>State Preservation</strong>: Original functions are stored in global variables for easy restoration</li>
+<li><strong>Behavior Control</strong>: Mocks can simulate different scenarios (success, failure, missing executables)</li>
+<li><strong>Logging</strong>: Mocked functions capture call parameters for verification</li>
+</ol>
+<h4 id="key-mock-implementations">Key Mock Implementations</h4>
+<ul>
+<li><strong><code>vim.fn.executable</code> Mocks</strong>: Simulate presence/absence of Docker, Podman, and lazydocker executables</li>
+<li><strong><code>vim.fn.jobstart</code> Mock</strong>: Captures command execution details without actually running processes</li>
+<li><strong><code>vim.notify</code> Mock</strong>: Collects notification messages for verification</li>
+<li><strong>Window API Mocks</strong>: Simulate window creation and management operations</li>
+<li><strong>Autocommand Mocks</strong>: Handle autocmd and augroup creation without side effects</li>
+</ul>
+<h4 id="test-isolation">Test Isolation</h4>
+<p>The mocking strategy completely isolates the plugin logic from:</p>
+<ul>
+<li>External system dependencies (Docker, Podman, lazydocker)</li>
+<li>Neovim&rsquo;s actual window management</li>
+<li>Process execution and job control</li>
+<li>Real-time system interactions</li>
+</ul>
+<p>This isolation makes the test suite:</p>
+<ul>
+<li><strong>Fast</strong>: No actual processes are launched</li>
+<li><strong>Deterministic</strong>: Tests produce consistent results</li>
+<li><strong>Portable</strong>: Runs anywhere without specific installations</li>
+<li><strong>Comprehensive</strong>: Covers edge cases and error conditions</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p><code>lazydocker.nvim</code> is a fantastic plugin for any Neovim user who works with Docker or Podman. It&rsquo;s a simple, yet powerful tool that can significantly improve your development workflow by bringing container management directly into your editor. If you&rsquo;re looking for a way to streamline your Docker workflow in Neovim, give <code>lazydocker.nvim</code> a try!</p>
+
+</article>
+
+    </main>
+    <footer>
+        <p>&copy; 2025 Thoughts</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            mermaid.initialize({ startOnLoad: true });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+baseURL = 'https://crnvl96.dev'
+languageCode = 'en-us'
+title = 'Thoughts'
+theme = "acme-light"
+
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'

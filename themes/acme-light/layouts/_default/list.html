@@ -1,0 +1,11 @@
+{{ define "title" }}{{ .Title }} | {{ .Site.Title }}{{ end }}
+{{ define "main" }}
+<h1>{{ .Title }}</h1>
+{{ range .Pages }}
+<article>
+    <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+    <time>{{ .Date.Format "2 Jan 2006" }}</time>
+    <p>{{ .Summary }}</p>
+</article>
+{{ end }}
+{{ end }}
