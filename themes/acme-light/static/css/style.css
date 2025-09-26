@@ -1,22 +1,23 @@
 body {
     font-family: 'Courier New', monospace;
-    background-color: #ffffea;
+    background-color: #ffffcc;
     color: #000000;
     margin: 0;
     padding: 0;
-    line-height: 1.6;
+    line-height: 1.8;
 }
 
 header {
-    background-color: #aeeeee;
-    padding: 1rem;
-    border-bottom: 1px solid #000000;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 1.5rem 0 0.5rem 0;
 }
 
 header h1 {
     margin: 0;
-    font-size: 1.5rem;
+    font-size: 2rem;
     color: #000000;
+    font-style: italic;
 }
 
 header a {
@@ -25,29 +26,27 @@ header a {
 }
 
 main {
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
-    padding: 2rem;
-    border-left: 1px solid #000000;
-    border-right: 1px solid #000000;
+    padding: 1rem 3rem 3rem 3rem;
 }
 
-footer {
-    text-align: center;
-    padding: 1rem;
-    background-color: #eaffff;
-    border-top: 1px solid #000000;
-    font-size: 0.9rem;
-    color: #000000;
-}
 
 article {
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
 }
 
-article h1, article h2 {
+article h1 {
     color: #000000;
     font-weight: bold;
+    font-size: 1.8rem;
+    margin-bottom: 0.2rem;
+}
+
+article h2 {
+    color: #000000;
+    font-weight: bold;
+    font-size: 1.4rem;
     margin-bottom: 0.2rem;
 }
 
@@ -64,19 +63,18 @@ article p {
 
 code {
     font-family: 'Courier New', monospace;
-    background-color: #ffffea;
+    background-color: #ffffaa;
     color: #000000;
     padding: 0.2rem 0.4rem;
     border-radius: 3px;
 }
 
 pre {
-    background-color: #ffffea;
+    background-color: #ffffaa;
     color: #000000;
-    padding: 1rem;
+    padding: 1.5rem;
     border-radius: 3px;
     overflow-x: auto;
-    border: 1px solid #000000;
 }
 
 pre code {
@@ -86,7 +84,7 @@ pre code {
 }
 
 .highlight {
-    background-color: #ffffea !important;
+    background-color: #ffffaa !important;
     color: #000000 !important;
 }
 
@@ -103,5 +101,5 @@ a {
 a:hover {
     text-decoration: underline;
     background-color: #000000;
-    color: #eaffff;
+    color: #ffffcc;
 }

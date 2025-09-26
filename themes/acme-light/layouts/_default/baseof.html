@@ -14,9 +14,6 @@
     <main>
         {{ block "main" . }}{{ end }}
     </main>
-    <footer>
-        <p>&copy; {{ now.Format "2006" }} {{ .Site.Title }}</p>
-    </footer>
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
