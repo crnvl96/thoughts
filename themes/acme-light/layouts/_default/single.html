@@ -1,8 +1,8 @@
-{{ define "title" }}{{ .Title }} | {{ .Site.Title }}{{ end }}
 {{ define "main" }}
-<article>
-    <h1>{{ .Title }}</h1>
-    <time>{{ .Date.Format "2 Jan 2006" }}</time>
-    {{ .Content }}
-</article>
+    <article>
+        <a class="go-back-link" href="{{ .Site.BaseURL }}">all posts</a>
+        <br/>
+        <time>{{ .Date.Format "2 Jan 2006" }}</time>
+        {{ .Content }}
+    </article>
 {{ end }}

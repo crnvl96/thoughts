@@ -1,10 +1,7 @@
-{{ define "title" }}{{ .Title }} | {{ .Site.Title }}{{ end }}
 {{ define "main" }}
-{{ range .Pages }}
-<article>
-    <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
-    <time>{{ .Date.Format "2 Jan 2006" }}</time>
-    <p>{{ .Summary }}</p>
-</article>
-{{ end }}
+    {{ range .Pages }}
+        <article>
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a> - {{ .Date.Format "2 Jan 2006" }} - {{ .Summary }}
+        </article>
+    {{ end }}
 {{ end }}

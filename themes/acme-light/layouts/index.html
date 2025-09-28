@@ -1,9 +1,8 @@
 {{ define "main" }}
-{{ range .Site.RegularPages }}
-<article>
-    <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
-    <time>{{ .Date.Format "2 Jan 2006" }}</time>
-    <p>{{ .Summary | truncate 100 }}</p>
-</article>
-{{ end }}
+    {{ range .Site.RegularPages }}
+        <article>
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+            <time>{{ .Date.Format "2 Jan 2006" }}</time>
+        </article>
+    {{ end }}
 {{ end }}

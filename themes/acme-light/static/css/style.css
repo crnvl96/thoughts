@@ -1,23 +1,27 @@
 body {
     font-family: 'Courier New', monospace;
-    background-color: #ffffcc;
+    background-color: #ffffff;
     color: #000000;
     margin: 0;
     padding: 0;
     line-height: 1.8;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 header {
     max-width: 900px;
-    margin: 0 auto;
-    padding: 1.5rem 0 0.5rem 0;
+    width: 100%;
+    padding: 1.5rem 3rem 0.5rem 3rem;
 }
 
 header h1 {
     margin: 0;
     font-size: 2rem;
     color: #000000;
-    font-style: italic;
 }
 
 header a {
@@ -27,13 +31,13 @@ header a {
 
 main {
     max-width: 900px;
-    margin: 0 auto;
+    width: 100%;
     padding: 1rem 3rem 3rem 3rem;
 }
 
 
 article {
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
 }
 
 article h1 {
@@ -63,17 +67,15 @@ article p {
 
 code {
     font-family: 'Courier New', monospace;
-    background-color: #ffffaa;
+    background-color: #f0f0f0;
     color: #000000;
     padding: 0.2rem 0.4rem;
-    border-radius: 3px;
 }
 
 pre {
-    background-color: #ffffaa;
+    background-color: #f0f0f0;
     color: #000000;
     padding: 1.5rem;
-    border-radius: 3px;
     overflow-x: auto;
 }
 
@@ -84,7 +86,7 @@ pre code {
 }
 
 .highlight {
-    background-color: #ffffaa !important;
+    background-color: #f0f0f0 !important;
     color: #000000 !important;
 }
 
@@ -100,6 +102,11 @@ a {
 
 a:hover {
     text-decoration: underline;
-    background-color: #000000;
-    color: #ffffcc;
+}
+
+.go-back-link {
+    font-size: 0.9rem;
+    font-weight: normal;
+    display: block;
+    text-align: right;
 }
