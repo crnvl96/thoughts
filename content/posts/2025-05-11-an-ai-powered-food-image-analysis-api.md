@@ -12,12 +12,12 @@ This post will take you on a deep dive into the DietLogApp, exploring its featur
 
 ## Features
 
-*   **AI-Powered Image Analysis:** Utilizes a powerful AI model to analyze food images and identify ingredients.
-*   **Detailed Nutritional Feedback:** Provides a comprehensive nutritional breakdown, including a health score and suggestions for improvement.
-*   **Streaming Responses:** Delivers nutritional feedback in real-time through streaming, enhancing the user experience.
-*   **Simple Web Interface:** Includes a basic HTML interface for easy interaction with the API.
-*   **Dockerized:** Comes with a Dockerfile for easy setup and deployment.
-*   **Scalable Architecture:** Built with a modular and scalable architecture, making it easy to extend and maintain.
+- **AI-Powered Image Analysis:** Utilizes a powerful AI model to analyze food images and identify ingredients.
+- **Detailed Nutritional Feedback:** Provides a comprehensive nutritional breakdown, including a health score and suggestions for improvement.
+- **Streaming Responses:** Delivers nutritional feedback in real-time through streaming, enhancing the user experience.
+- **Simple Web Interface:** Includes a basic HTML interface for easy interaction with the API.
+- **Dockerized:** Comes with a Dockerfile for easy setup and deployment.
+- **Scalable Architecture:** Built with a modular and scalable architecture, making it easy to extend and maintain.
 
 ## API Deep Dive: From Request to Nutritional Insights
 
@@ -51,8 +51,8 @@ The reliability of DietLogApp's analysis hinges on sophisticated prompt engineer
 
 Both prompts assign a specific role to the AI.
 
--   **First Prompt**: `"You are an AI assistant tasked with analyzing a food image..."` This sets a neutral, observational tone, focusing the AI on factual description.
--   **Second Prompt**: `"You are an AI nutritionist with extensive knowledge of food, nutrition, and health."` This invokes the AI's specialized knowledge base, ensuring the feedback is professional and authoritative.
+- **First Prompt**: `"You are an AI assistant tasked with analyzing a food image..."` This sets a neutral, observational tone, focusing the AI on factual description.
+- **Second Prompt**: `"You are an AI nutritionist with extensive knowledge of food, nutrition, and health."` This invokes the AI's specialized knowledge base, ensuring the feedback is professional and authoritative.
 
 **Advantage**: Adopting a persona significantly improves the quality and relevance of the response. It helps the model select the appropriate tone, style, and depth of information for the given task.
 
@@ -70,14 +70,15 @@ The second prompt commands the model to structure its output using specific XML-
 
 ### 4. Step-by-Step Instructions and Negative Constraints
 
-Both prompts provide clear, enumerated steps for the AI to follow and explicitly state what *not* to do.
+Both prompts provide clear, enumerated steps for the AI to follow and explicitly state what _not_ to do.
 
--   The description prompt lists six specific aspects to focus on and warns: `"It is crucial that you do not make assumptions about ingredients or dishes that you cannot clearly identify."`
--   The nutrition prompt outlines a seven-step analysis process and provides a six-step guide for the internal "thought process" within the `<nutritional_breakdown>` tags.
+- The description prompt lists six specific aspects to focus on and warns: `"It is crucial that you do not make assumptions about ingredients or dishes that you cannot clearly identify."`
+- The nutrition prompt outlines a seven-step analysis process and provides a six-step guide for the internal "thought process" within the `<nutritional_breakdown>` tags.
 
 **Advantages**:
--   **Clarity and Completeness**: Step-by-step instructions act as a checklist for the model, ensuring all aspects of the request are addressed.
--   **Reduced Hallucinations**: Negative constraints are crucial for improving the factual accuracy of the AI. By telling the model not to guess, we get a more trustworthy and objective analysis grounded in the visual evidence.
+
+- **Clarity and Completeness**: Step-by-step instructions act as a checklist for the model, ensuring all aspects of the request are addressed.
+- **Reduced Hallucinations**: Negative constraints are crucial for improving the factual accuracy of the AI. By telling the model not to guess, we get a more trustworthy and objective analysis grounded in the visual evidence.
 
 These combined techniques elevate the application from a simple AI wrapper to a robust analysis tool that produces reliable and well-structured nutritional feedback.
 
@@ -87,9 +88,9 @@ Instead of waiting for the entire nutritional analysis to be generated, the appl
 
 The primary benefits of this approach are:
 
--   **Improved User Experience**: The user starts seeing the analysis almost immediately, which makes the application feel much more responsive. For a detailed analysis, the wait time for the full response could be several seconds.
--   **Reduced Time to First Byte (TTFB)**: Streaming allows the server to send the first chunk of data quickly, which is a crucial performance metric.
--   **Efficient Resource Management**: It avoids buffering the entire response in memory on the server, which can be beneficial for long and detailed analyses.
+- **Improved User Experience**: The user starts seeing the analysis almost immediately, which makes the application feel much more responsive. For a detailed analysis, the wait time for the full response could be several seconds.
+- **Reduced Time to First Byte (TTFB)**: Streaming allows the server to send the first chunk of data quickly, which is a crucial performance metric.
+- **Efficient Resource Management**: It avoids buffering the entire response in memory on the server, which can be beneficial for long and detailed analyses.
 
 The simple frontend in `index.html` demonstrates how to consume this stream using the `fetch` API and a `ReadableStream` to update the UI in real time.
 
@@ -121,13 +122,13 @@ The project is organized into a clean and modular structure:
 └── requirements.txt        # Project dependencies
 ```
 
-*   **`app/api`**: Contains the API endpoints for the application.
-*   **`app/exceptions`**: Defines custom exceptions used throughout the application.
-*   **`app/integration`**: Holds the integration logic for third-party services like the Anthropic API.
-*   **`app/interfaces`**: Defines the interfaces for the application's services.
-*   **`app/providers`**: Implements the service interfaces.
-*   **`app/static`**: Contains the static files for the frontend.
-*   **`app/main.py`**: The main entry point of the application, where the FastAPI app is initialized.
+- **`app/api`**: Contains the API endpoints for the application.
+- **`app/exceptions`**: Defines custom exceptions used throughout the application.
+- **`app/integration`**: Holds the integration logic for third-party services like the Anthropic API.
+- **`app/interfaces`**: Defines the interfaces for the application's services.
+- **`app/providers`**: Implements the service interfaces.
+- **`app/static`**: Contains the static files for the frontend.
+- **`app/main.py`**: The main entry point of the application, where the FastAPI app is initialized.
 
 ## Getting Started
 
@@ -135,12 +136,13 @@ You can run the DietLogApp locally using Docker.
 
 ### Prerequisites
 
-*   Docker installed
-*   An Anthropic API key
+- Docker installed
+- An Anthropic API key
 
 ### Steps
 
 1.  **Clone the repository:**
+
     ```bash
     git clone <repository-url>
     cd <repository-directory>
@@ -148,23 +150,26 @@ You can run the DietLogApp locally using Docker.
 
 2.  **Create a `.env` file:**
     Create a `.env` file in the root of the project and add your Anthropic API key:
+
     ```
     ANTHROPIC_API_KEY=your-api-key
     ```
 
 3.  **Build the Docker image:**
+
     ```bash
     docker build -t dietlogapp .
     ```
 
 4.  **Run the Docker container:**
+
     ```bash
     docker run -d --name dietlogapp -p 8000:8000 --env-file .env dietlogapp
     ```
 
 5.  **Access the application:**
-    *   **API Docs:** [http://localhost:8000/docs](http://localhost:8000/docs)
-    *   **Web Interface:** [http://localhost:8000/static/index.html](http://localhost:8000/static/index.html)
+    - **API Docs:** [http://localhost:8000/docs](http://localhost:8000/docs)
+    - **Web Interface:** [http://localhost:8000/static/index.html](http://localhost:8000/static/index.html)
 
 ## Conclusion
 
@@ -172,9 +177,9 @@ The DietLogApp is a great example of how to build a modern, AI-powered applicati
 
 Future improvements could include:
 
-*   **User Authentication:** Add user authentication to allow users to track their food logs.
-*   **Database Integration:** Store food logs and nutritional data in a database.
-*   **Frontend Framework:** Build a more sophisticated frontend with a modern JavaScript framework like React or Vue.
-*   **Support for more AI models:** Add support for other AI models like OpenAI's GPT-4 or Google's Gemini.
+- **User Authentication:** Add user authentication to allow users to track their food logs.
+- **Database Integration:** Store food logs and nutritional data in a database.
+- **Frontend Framework:** Build a more sophisticated frontend with a modern JavaScript framework like React or Vue.
+- **Support for more AI models:** Add support for other AI models like OpenAI's GPT-4 or Google's Gemini.
 
 I hope this blog post has given you a good overview of the DietLogApp. Feel free to explore the code, run it locally, and build upon it!

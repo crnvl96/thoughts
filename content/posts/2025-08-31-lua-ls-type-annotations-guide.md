@@ -35,7 +35,7 @@ LuaLS recognizes all standard Lua types, such as `nil`, `any`, `boolean`, `strin
 ### Advanced Type Expressions
 
 | Type Pattern  | Example                         | Description             |
-| ------------- | ---------                       | -------------           |
+| ------------- | ------------------------------- | ----------------------- |
 | Union Type    | `string\|number`                | Multiple possible types |
 | Array         | `string[]`                      | Array of specific type  |
 | Dictionary    | `{ [string]: boolean }`         | String-keyed dictionary |
@@ -53,7 +53,7 @@ LuaLS recognizes all standard Lua types, such as `nil`, `any`, `boolean`, `strin
 local name = "John"
 
 ---@type number[]
-local scores = {95, 87, 92}
+local scores = { 95, 87, 92 }
 
 ---@type { [string]: boolean }
 local settings = { sound = true, music = false }
@@ -69,7 +69,7 @@ local validateUser
 ---@param age? number Optional age parameter
 ---@param scores number[] Array of scores
 function createUser(username, age, scores)
-    -- function body
+	-- function body
 end
 
 --- Union type parameter
@@ -86,18 +86,22 @@ function processData(callback) end
 ```lua
 --- Simple return
 ---@return boolean
-function isValid() return true end
+function isValid()
+	return true
+end
 
 --- Named return with description
 ---@return boolean success If operation succeeded
 ---@return string? error Error message if failed
 function riskyOperation()
-    return false, "Something went wrong"
+	return false, "Something went wrong"
 end
 
 --- Multiple returns
 ---@return integer count, string... names
-function getNames() return 3, "Alice", "Bob", "Charlie" end
+function getNames()
+	return 3, "Alice", "Bob", "Charlie"
+end
 ```
 
 ### `@class` - Defining Custom Types
@@ -111,7 +115,7 @@ function getNames() return 3, "Alice", "Bob", "Charlie" end
 
 ---@param user User
 function processUser(user)
-    print(user.name) -- Autocomplete works here!
+	print(user.name) -- Autocomplete works here!
 end
 
 --- Class inheritance
@@ -131,7 +135,7 @@ end
 --- Enum with descriptions
 ---@alias Color
 ---| '"red"'    # Primary color red
----| '"green"'  # Primary color green  
+---| '"green"'  # Primary color green
 ---| '"blue"'   # Primary color blue
 
 ---@param favoriteColor Color
@@ -143,10 +147,10 @@ function setColor(favoriteColor) end
 ```lua
 ---@enum LogLevel
 local LOG_LEVELS = {
-    DEBUG = 1,
-    INFO = 2,
-    WARN = 3,
-    ERROR = 4
+	DEBUG = 1,
+	INFO = 2,
+	WARN = 3,
+	ERROR = 4,
 }
 
 ---@param level LogLevel
@@ -164,7 +168,9 @@ logMessage(LOG_LEVELS.INFO, "System started") -- Type-safe!
 ---@generic T
 ---@param item T
 ---@return T
-function identity(item) return item end
+function identity(item)
+	return item
+end
 
 --- Generic class
 ---@class Container<T>
@@ -186,7 +192,7 @@ function createUser(name, age) end
 
 -- All these calls are valid:
 local user1 = createUser("Alice", 30)
-local user2 = createUser("Bob") 
+local user2 = createUser("Bob")
 local user3 = createUser(123)
 ```
 
@@ -236,15 +242,15 @@ function apiRequest(endpoint) end
 ---@param id integer
 ---@return User?
 function getUser(id)
-    ---@type ApiResponse
-    local response = apiRequest("/users/" .. id)
-    
-    if response.success then
-        ---@cast response.data User
-        return response.data
-    end
-    
-    return nil
+	---@type ApiResponse
+	local response = apiRequest("/users/" .. id)
+
+	if response.success then
+		---@cast response.data User
+		return response.data
+	end
+
+	return nil
 end
 ```
 
@@ -272,8 +278,8 @@ end
 ---@param damage number
 ---@return boolean entityDied
 function applyDamage(entity, damage)
-    entity.health = entity.health - damage
-    return entity.health <= 0
+	entity.health = entity.health - damage
+	return entity.health <= 0
 end
 ```
 
@@ -291,7 +297,7 @@ end
 LuaLS type annotations transform Lua development from a purely dynamic experience to one with robust type safety and intelligent assistance. By adopting these annotations, you can:
 
 - Catch type errors before runtime
-- Improve code documentation and readability  
+- Improve code documentation and readability
 - Enhance IDE autocompletion and navigation
 - Facilitate better team collaboration
 - Create more maintainable codebases

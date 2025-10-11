@@ -94,12 +94,14 @@ end
 ### State Management
 
 The plugin uses global variables to track state:
+
 - `_G.__LazyDocker_Window_Handle`: Stores the window handle of the active lazydocker instance
 - `_G.__LazyDocker_Process_JobID`: Stores the Job ID of the running lazydocker process
 
 ### Open Operation
 
 When opening:
+
 1. **Validation**: Validates the engine option ('docker' or 'podman')
 2. **Focus Existing**: If a window is already open, focuses it instead of creating a new one
 3. **Prerequisite Checks**: Verifies both the container engine and lazydocker executables are available
@@ -111,6 +113,7 @@ When opening:
 ### Close Operation
 
 When closing:
+
 1. Checks if the stored window handle is valid using `vim.api.nvim_win_is_valid()`
 2. If valid, closes the window with `vim.api.nvim_win_close(win_handle, true)`
 3. Clears the window handle reference
@@ -119,6 +122,7 @@ When closing:
 ### Process Management
 
 The plugin uses Neovim's job control API:
+
 - `vim.fn.jobstart()` to launch lazydocker
 - `vim.fn.jobstop()` to terminate hanging processes
 - `vim.fn.jobwait()` to check process status
@@ -126,6 +130,7 @@ The plugin uses Neovim's job control API:
 ### Auto-cleanup System
 
 Autocommands ensure proper cleanup:
+
 - `BufWipeout`: Cleans up when the terminal buffer is destroyed
 - `WinClosed`: Cleans up when the window is closed
 - Both trigger job termination and state reset
@@ -164,12 +169,14 @@ The mocking system is implemented through a structured approach in `tests/mocks.
 #### Test Isolation
 
 The mocking strategy completely isolates the plugin logic from:
+
 - External system dependencies (Docker, Podman, lazydocker)
 - Neovim's actual window management
 - Process execution and job control
 - Real-time system interactions
 
 This isolation makes the test suite:
+
 - **Fast**: No actual processes are launched
 - **Deterministic**: Tests produce consistent results
 - **Portable**: Runs anywhere without specific installations
