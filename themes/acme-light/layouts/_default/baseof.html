@@ -8,6 +8,10 @@
     {{ block "head" . }}{{ end }}
 </head>
 <body>
+    <header>
+        <h1><a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a></h1>
+        <a href="{{ .Site.BaseURL }}/index.xml" class="rss-button">RSS</a>
+    </header>
     <main>
         {{ block "main" . }}{{ end }}
     </main>
