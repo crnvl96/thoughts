@@ -1,0 +1,13 @@
+{{ define "main" }}
+    <p class="contact-links">
+        <a href="https://github.com/crnvl96">GitHub</a> |
+        <a href="https://linkedin.com/in/adrancarnavale">LinkedIn</a> |
+        <a href="mailto:adran@hey.com">Email</a>
+    </p>
+    {{ range .Site.RegularPages }}
+        <article class="post">
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+            <time class="date">{{ .Date.Format "2 Jan 2006" }}</time>
+        </article>
+    {{ end }}
+{{ end }}

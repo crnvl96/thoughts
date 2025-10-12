@@ -5,10 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
     <link rel="alternate" type="application/rss+xml" href="{{ .Site.BaseURL }}/index.xml" title="{{ .Site.Title }} RSS">
-    {{ block "head" . }}{{ end }}
 </head>
 <body>
-    <main>
+    <main class="main-content">
         {{ block "main" . }}{{ end }}
     </main>
 </body>

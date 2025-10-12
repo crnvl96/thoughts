@@ -1,6 +1,6 @@
 {{ define "main" }}
     {{ range .Pages }}
-        <article>
+        <article class="post">
             <a href="{{ .RelPermalink }}">{{ .Title }}</a> - {{ .Date.Format "2 Jan 2006" }} - {{ .Summary }}
         </article>
     {{ end }}

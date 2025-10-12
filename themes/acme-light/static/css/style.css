@@ -1,7 +1,37 @@
+/* CSS variables for theme colors */
+:root {
+  --bg-color: #dcd7ba;
+  --bg-color-dark: #c8c093;
+  --fg-color: #191919;
+}
+
+/* Font faces for BKM font family */
+@font-face {
+  font-family: "BKM";
+  src: url("/fonts/bkm/bkm-regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "BKM";
+  src: url("/fonts/bkm/bkm-bold.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "BKM";
+  src: url("/fonts/bkm/bkm-bold-oblique.woff2") format("woff2");
+  font-weight: normal;
+  font-style: italic;
+}
+
+/* Base body styling for overall page layout */
 body {
-  font-family: "Courier New", monospace;
-  background-color: #ffffff;
-  color: #000000;
+  font-family: "BKM", sans-serif;
+  background: var(--bg-color);
+  color: var(--fg-color);
   margin: 0;
   padding: 0;
   line-height: 1.8;
@@ -12,83 +42,187 @@ body {
   align-items: center;
 }
 
-main {
+/* Main content container - used in baseof.html */
+.main-content {
   max-width: 900px;
   width: 100%;
   padding: 1rem 3rem 3rem 3rem;
 }
 
-article {
+/* Post styling for articles - used in home.html, list.html, single.html */
+.post {
   margin-bottom: 1rem;
 }
 
-article h1 {
-  color: #000000;
+/* Heading styles within posts - used in single.html content */
+.post h1,
+.post h2 {
+  color: var(--fg-color);
   font-weight: bold;
+  margin-bottom: 0.2rem;
+}
+
+.post h1 {
   font-size: 1.8rem;
-  margin-bottom: 0.2rem;
 }
 
-article h2 {
-  color: #000000;
-  font-weight: bold;
+.post h2 {
   font-size: 1.4rem;
-  margin-bottom: 0.2rem;
 }
 
-article time {
-  color: #505050;
+/* Date styling within posts - used in home.html, list.html, single.html */
+.post .date {
+  color: var(--fg-color);
   font-size: 0.9rem;
   font-style: italic;
   margin-bottom: 0.1rem;
 }
 
-article p {
+/* Paragraph styling within posts - used in single.html content */
+.post p {
   margin-top: 0.1rem;
 }
 
+/* Inline code styling - used throughout content */
 code {
-  font-family: "Courier New", monospace;
-  background-color: #f0f0f0;
-  color: #000000;
+  font-family: "BKM", monospace;
+  background: var(--bg-color-dark);
+  color: var(--fg-color);
   padding: 0.2rem 0.4rem;
 }
 
-pre {
-  background-color: #f0f0f0;
-  color: #000000;
+/* Preformatted code blocks - used in single.html content */
+.post pre {
+  background: var(--bg-color-dark);
+  color: var(--fg-color);
   padding: 1.5rem;
   overflow-x: auto;
 }
 
-pre code {
+/* Code within pre blocks - overrides inline code styles */
+.post pre code {
   background: none;
   padding: 0;
-  color: #000000;
 }
 
-.highlight {
-  background-color: #f0f0f0 !important;
-  color: #000000 !important;
+/* Syntax highlighting for code blocks - added by Hugo */
+.post .highlight,
+.post .highlight * {
+  background: var(--bg-color-dark) !important;
+  color: var(--fg-color) !important;
 }
 
-.highlight * {
-  color: #000000 !important;
+.post .highlight * {
   background: transparent !important;
 }
 
+/* Blockquote styling for markdown > - used in single.html content */
+.post blockquote {
+  border-left: 4px solid var(--fg-color);
+  padding-left: 1rem;
+  margin: 1rem 0;
+  font-style: italic;
+}
+
+/* Link styling - used throughout */
 a {
-  color: #000000;
+  color: var(--fg-color);
   font-weight: bold;
 }
 
 a:hover {
-  text-decoration: underline;
+  opacity: 0.7;
 }
 
+.post h1 {
+  font-size: 1.8rem;
+}
+
+.post h2 {
+  font-size: 1.4rem;
+}
+
+/* Date styling within posts - used in home.html, list.html, single.html */
+.post .date {
+  color: var(--fg-color);
+  font-size: 0.9rem;
+  font-style: italic;
+  margin-bottom: 0.1rem;
+}
+
+/* Paragraph styling within posts - used in single.html content */
+.post p {
+  margin-top: 0.1rem;
+}
+
+/* Post header for aligning date and back link - used in single.html */
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Inline code styling - used throughout content */
+code {
+  font-family: "BKM", monospace;
+  background: var(--bg-color-dark);
+  color: var(--fg-color);
+  padding: 0.2rem 0.4rem;
+}
+
+/* Preformatted code blocks - used in single.html content */
+.post pre {
+  background: var(--bg-color-dark);
+  color: var(--fg-color);
+  padding: 1.5rem;
+  overflow-x: auto;
+}
+
+/* Code within pre blocks - overrides inline code styles */
+.post pre code {
+  background: none;
+  padding: 0;
+}
+
+/* Syntax highlighting for code blocks - added by Hugo */
+.post .highlight,
+.post .highlight * {
+  background: var(--bg-color-dark) !important;
+  color: var(--fg-color) !important;
+}
+
+.post .highlight * {
+  background: transparent !important;
+}
+
+/* Blockquote styling for markdown > - used in single.html content */
+.post blockquote {
+  border-left: 4px solid var(--fg-color);
+  padding-left: 1rem;
+  margin: 1rem 0;
+  font-style: italic;
+}
+
+/* Link styling - used throughout */
+a {
+  color: var(--fg-color);
+  font-weight: bold;
+}
+
+a:hover {
+  opacity: 0.7;
+}
+
+/* Go back link - used in single.html */
 .go-back-link {
   font-size: 0.9rem;
   font-weight: normal;
-  display: block;
-  text-align: right;
+}
+
+/* Contact links at top of home page - used in home.html */
+.contact-links {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--bg-color-dark);
+  margin-bottom: 2rem;
 }

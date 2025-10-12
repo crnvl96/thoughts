@@ -1,8 +1,9 @@
 {{ define "main" }}
-    <article>
-        <a class="go-back-link" href="{{ .Site.BaseURL }}">all posts</a>
-        <br/>
-        <time>{{ .Date.Format "2 Jan 2006" }}</time>
+    <article class="post">
+        <div class="post-header">
+            <time class="date">{{ .Date.Format "2 Jan 2006" }}</time>
+            <a class="go-back-link" href="{{ .Site.BaseURL }}">all posts</a>
+        </div>
         {{ .Content }}
     </article>
 {{ end }}
