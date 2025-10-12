@@ -1,112 +1,94 @@
 body {
-    font-family: 'Courier New', monospace;
-    background-color: #ffffff;
-    color: #000000;
-    margin: 0;
-    padding: 0;
-    line-height: 1.8;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-header {
-    max-width: 900px;
-    width: 100%;
-    padding: 1.5rem 3rem 0.5rem 3rem;
-}
-
-header h1 {
-    margin: 0;
-    font-size: 2rem;
-    color: #000000;
-}
-
-header a {
-    color: #000000;
-    text-decoration: none;
+  font-family: "Courier New", monospace;
+  background-color: #ffffff;
+  color: #000000;
+  margin: 0;
+  padding: 0;
+  line-height: 1.8;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 main {
-    max-width: 900px;
-    width: 100%;
-    padding: 1rem 3rem 3rem 3rem;
+  max-width: 900px;
+  width: 100%;
+  padding: 1rem 3rem 3rem 3rem;
 }
 
-
 article {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 article h1 {
-    color: #000000;
-    font-weight: bold;
-    font-size: 1.8rem;
-    margin-bottom: 0.2rem;
+  color: #000000;
+  font-weight: bold;
+  font-size: 1.8rem;
+  margin-bottom: 0.2rem;
 }
 
 article h2 {
-    color: #000000;
-    font-weight: bold;
-    font-size: 1.4rem;
-    margin-bottom: 0.2rem;
+  color: #000000;
+  font-weight: bold;
+  font-size: 1.4rem;
+  margin-bottom: 0.2rem;
 }
 
 article time {
-    color: #505050;
-    font-size: 0.9rem;
-    font-style: italic;
-    margin-bottom: 0.1rem;
+  color: #505050;
+  font-size: 0.9rem;
+  font-style: italic;
+  margin-bottom: 0.1rem;
 }
 
 article p {
-    margin-top: 0.1rem;
+  margin-top: 0.1rem;
 }
 
 code {
-    font-family: 'Courier New', monospace;
-    background-color: #f0f0f0;
-    color: #000000;
-    padding: 0.2rem 0.4rem;
+  font-family: "Courier New", monospace;
+  background-color: #f0f0f0;
+  color: #000000;
+  padding: 0.2rem 0.4rem;
 }
 
 pre {
-    background-color: #f0f0f0;
-    color: #000000;
-    padding: 1.5rem;
-    overflow-x: auto;
+  background-color: #f0f0f0;
+  color: #000000;
+  padding: 1.5rem;
+  overflow-x: auto;
 }
 
 pre code {
-    background: none;
-    padding: 0;
-    color: #000000;
+  background: none;
+  padding: 0;
+  color: #000000;
 }
 
 .highlight {
-    background-color: #f0f0f0 !important;
-    color: #000000 !important;
+  background-color: #f0f0f0 !important;
+  color: #000000 !important;
 }
 
 .highlight * {
-    color: #000000 !important;
-    background: transparent !important;
+  color: #000000 !important;
+  background: transparent !important;
 }
 
 a {
-    color: #000000;
-    font-weight: bold;
+  color: #000000;
+  font-weight: bold;
 }
 
 a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .go-back-link {
-    font-size: 0.9rem;
-    font-weight: normal;
-    display: block;
-    text-align: right;
+  font-size: 0.9rem;
+  font-weight: normal;
+  display: block;
+  text-align: right;
 }

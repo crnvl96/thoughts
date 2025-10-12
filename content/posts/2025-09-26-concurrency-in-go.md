@@ -20,18 +20,18 @@ To start a goroutine, simply prefix a function call with the `go` keyword:
 package main
 
 import (
-    "fmt"
-    "time"
+	"fmt"
+	"time"
 )
 
 func sayHello() {
-    fmt.Println("Hello from goroutine!")
+	fmt.Println("Hello from goroutine!")
 }
 
 func main() {
-    go sayHello()  // Starts a new goroutine
-    time.Sleep(time.Second)  // Wait for goroutine to finish
-    fmt.Println("Main function done")
+	go sayHello()           // Starts a new goroutine
+	time.Sleep(time.Second) // Wait for goroutine to finish
+	fmt.Println("Main function done")
 }
 ```
 
@@ -49,16 +49,16 @@ You can start multiple goroutines easily:
 
 ```go
 func count(name string) {
-    for i := 1; i <= 5; i++ {
-        fmt.Printf("%s: %d\n", name, i)
-        time.Sleep(100 * time.Millisecond)
-    }
+	for i := 1; i <= 5; i++ {
+		fmt.Printf("%s: %d\n", name, i)
+		time.Sleep(100 * time.Millisecond)
+	}
 }
 
 func main() {
-    go count("goroutine 1")
-    go count("goroutine 2")
-    time.Sleep(2 * time.Second)  // Wait for both to finish
+	go count("goroutine 1")
+	go count("goroutine 2")
+	time.Sleep(2 * time.Second) // Wait for both to finish
 }
 ```
 
@@ -74,24 +74,6 @@ This will interleave the output from both goroutines, demonstrating concurrent e
 
 In practice, concurrency shines for scalable apps (e.g., servers handling thousands of requests) by maximizing throughput and minimizing idle time. For simple CPU tasks, it's often not faster compared to sequential execution on a single core.
 
-```mermaid
-gantt
-    title Two Concurrent Goroutines (A and B) with Overlapping Waits
-    dateFormat HH:mm
-    axisFormat %H:%M
-
-    section Goroutine A
-    Compute            :crit, a1, after start, 10m
-    Wait (e.g., I/O)   :a2,  after a1, 20m
-    Compute 2          :crit, a3, after a2, 10m
-
-    section Goroutine B
-    Wait (e.g., I/O)   :b0,  after start, 10m
-    Compute            :crit, b1, after b0, 10m
-    Wait               :b2,  after b1, 20m
-    Compute 2          :crit, b3, after b2, 10m
-```
-
 ## Channels: Communicating Between Goroutines
 
 While goroutines allow concurrent execution, **channels** enable safe communication between them. Channels are typed conduits for sending and receiving values.
@@ -99,13 +81,13 @@ While goroutines allow concurrent execution, **channels** enable safe communicat
 ### Basic Channel Operations
 
 ```go
-ch := make(chan string)  // Create a channel of strings
+ch := make(chan string) // Create a channel of strings
 
 go func() {
-    ch <- "Hello, channel!"  // Send a value
+	ch <- "Hello, channel!" // Send a value
 }()
 
-message := <-ch  // Receive a value
+message := <-ch // Receive a value
 fmt.Println(message)
 ```
 
@@ -114,14 +96,14 @@ fmt.Println(message)
 By default, channels are unbuffered (synchronous). You can create buffered channels for asynchronous communication:
 
 ```go
-ch := make(chan int, 2)  // Buffer size of 2
+ch := make(chan int, 2) // Buffer size of 2
 
 ch <- 1
 ch <- 2
 // No receiver yet, but doesn't block because of buffer
 
-fmt.Println(<-ch)  // 1
-fmt.Println(<-ch)  // 2
+fmt.Println(<-ch) // 1
+fmt.Println(<-ch) // 2
 ```
 
 ### Channel Directions
@@ -130,12 +112,12 @@ You can specify channel direction in function parameters:
 
 ```go
 func sendOnly(ch chan<- string) {
-    ch <- "sending"
+	ch <- "sending"
 }
 
 func receiveOnly(ch <-chan string) {
-    msg := <-ch
-    fmt.Println(msg)
+	msg := <-ch
+	fmt.Println(msg)
 }
 ```
 
@@ -148,22 +130,22 @@ ch1 := make(chan string)
 ch2 := make(chan string)
 
 go func() {
-    time.Sleep(100 * time.Millisecond)
-    ch1 <- "from ch1"
+	time.Sleep(100 * time.Millisecond)
+	ch1 <- "from ch1"
 }()
 
 go func() {
-    time.Sleep(200 * time.Millisecond)
-    ch2 <- "from ch2"
+	time.Sleep(200 * time.Millisecond)
+	ch2 <- "from ch2"
 }()
 
 for i := 0; i < 2; i++ {
-    select {
-    case msg1 := <-ch1:
-        fmt.Println("Received:", msg1)
-    case msg2 := <-ch2:
-        fmt.Println("Received:", msg2)
-    }
+	select {
+	case msg1 := <-ch1:
+		fmt.Println("Received:", msg1)
+	case msg2 := <-ch2:
+		fmt.Println("Received:", msg2)
+	}
 }
 ```
 
@@ -175,27 +157,27 @@ For cases where shared memory is necessary, Go provides the `sync` package with 
 import "sync"
 
 var (
-    counter int
-    mu      sync.Mutex
+	counter int
+	mu      sync.Mutex
 )
 
 func increment(wg *sync.WaitGroup) {
-    defer wg.Done()
-    for i := 0; i < 1000; i++ {
-        mu.Lock()
-        counter++
-        mu.Unlock()
-    }
+	defer wg.Done()
+	for i := 0; i < 1000; i++ {
+		mu.Lock()
+		counter++
+		mu.Unlock()
+	}
 }
 
 func main() {
-    var wg sync.WaitGroup
-    for i := 0; i < 10; i++ {
-        wg.Add(1)
-        go increment(&wg)
-    }
-    wg.Wait()
-    fmt.Println("Final counter:", counter)
+	var wg sync.WaitGroup
+	for i := 0; i < 10; i++ {
+		wg.Add(1)
+		go increment(&wg)
+	}
+	wg.Wait()
+	fmt.Println("Final counter:", counter)
 }
 ```
 
@@ -207,14 +189,14 @@ func main() {
 var wg sync.WaitGroup
 
 for i := 0; i < 5; i++ {
-    wg.Add(1)
-    go func(id int) {
-        defer wg.Done()
-        fmt.Printf("Goroutine %d done\n", id)
-    }(i)
+	wg.Add(1)
+	go func(id int) {
+		defer wg.Done()
+		fmt.Printf("Goroutine %d done\n", id)
+	}(i)
 }
 
-wg.Wait()  // Wait for all goroutines
+wg.Wait() // Wait for all goroutines
 fmt.Println("All done")
 ```
 
