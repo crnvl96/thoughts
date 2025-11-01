@@ -1,6 +1,6 @@
 +++
 date = '2025-10-10'
-draft = false
+draft = true
 title = 'Building a JSX Transpiler with Vite'
 +++
 

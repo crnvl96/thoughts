@@ -1,6 +1,6 @@
 +++
 date = '2025-08-24'
-draft = false
+draft = true
 title = 'Effortless Docker Management in Neovim with lazydocker.nvim'
 +++
 

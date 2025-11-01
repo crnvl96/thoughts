@@ -1,6 +1,6 @@
 +++
 date = '2025-07-30'
-draft = false
+draft = true
 title = 'Building Scalable Event-Driven Architectures with AWS CDK'
 +++
 

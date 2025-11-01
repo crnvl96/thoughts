@@ -1,6 +1,6 @@
 +++
 date = '2025-09-29'
-draft = false
+draft = true
 title = 'Pointers vs. Values in Go: Tradeoffs and Guidelines'
 +++
 

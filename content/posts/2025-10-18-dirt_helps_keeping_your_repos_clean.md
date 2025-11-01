@@ -1,6 +1,6 @@
 +++
 date = '2025-10-18'
-draft = false
+draft = true
 title = 'Introducing Dirt: Keep Your Git Repositories Clean'
 +++
 

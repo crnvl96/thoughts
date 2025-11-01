@@ -1,6 +1,6 @@
 +++
 date = '2025-09-26'
-draft = false
+draft = true
 title = 'Concurrency in Go'
 +++
 
