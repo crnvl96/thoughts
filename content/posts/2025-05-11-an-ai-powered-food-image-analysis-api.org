@@ -1,6 +1,7 @@
 #+TITLE: An AI-Powered Food Image Analysis API
 #+DATE: 2025-05-11
 #+DRAFT: false
+#+TAGS[]: programming python AI
 
 DietLogApp is a powerful, AI-driven application designed to analyze food images and provide detailed nutritional feedback.
 
