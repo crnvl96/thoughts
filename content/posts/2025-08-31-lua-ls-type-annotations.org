@@ -1,0 +1,215 @@
+#+TITLE: LuaLS Type Annotations
+#+DATE: 2025-08-31
+#+DRAFT: false
+#+TAGS[]: lua programming
+
+#+BEGIN_QUOTE
+Check out the [[https://luals.github.io/wiki/annotations/][official documentation]] for more on Github
+#+END_QUOTE
+
+* What are LuaLS Annotations?
+
+LuaLS annotations are special comments prefixed with ~---~ that provide type information to the language server. These annotations help the server understand your code better, enabling features like:
+
+- *Type checking* and error detection
+- *Intelligent autocompletion*
+- *Better signature help*
+
+* Basic Syntax and Formatting
+
+#+BEGIN_SRC lua
+--- This is a basic annotation
+---
+--- *Bold text* and /italic text/ are supported
+#+END_SRC
+
+* Core Type System
+
+LuaLS recognizes all standard Lua types, such as `nil`, `any`, `boolean`, `string`, and more.
+
+** Advanced Type Expressions
+
+| Type Pattern  | Example                         | Description             |
+| ------------- + ------------------------------- + ----------------------- |
+| Union Type    | `string\|number`                | Multiple possible types |
+| Array         | `string[]`                      | Array of specific type  |
+| Dictionary    | `{ [string]: boolean }`         | String-keyed dictionary |
+| Key-Value     | `table<KEY, VALUE>`             | Generic table type      |
+| Table Literal | `{ name: string, age: number }` | Structured table        |
+| Function      | `fun(param: string): boolean`   | Function signature      |
+| Optional      | `string?`                       | Same as `string\|nil`   |
+
+** Essential Annotations with Examples
+
+*** `@type` - Variable Type Declarations
+
+#+BEGIN_SRC lua
+---@type string
+local name = "John"
+
+---@type number[]
+local scores = { 95, 87, 92 }
+
+---@type { [string]: boolean }
+local settings = { sound = true, music = false }
+
+---@type fun(username: string): boolean
+local validateUser
+#+END_SRC
+
+*** `@param` - Function Parameters
+
+#+BEGIN_SRC lua
+---@param username string The user's name
+---@param age? number Optional age parameter
+---@param scores number[] Array of scores
+function createUser(username, age, scores)
+	-- function body
+end
+
+--- Union type parameter
+---@param id string | number
+function findById(id) end
+
+--- Optional parameter with ?
+---@param callback? fun() Optional callback function
+function processData(callback) end
+#+END_SRC
+
+*** `@return` - Function Return Values
+
+#+BEGIN_SRC lua
+--- Simple return
+---@return boolean
+function isValid()
+	return true
+end
+
+--- Named return with description
+---@return boolean success If operation succeeded
+---@return string? error Error message if failed
+function riskyOperation()
+	return false, "Something went wrong"
+end
+
+--- Multiple returns
+---@return integer count, string... names
+function getNames()
+	return 3, "Alice", "Bob", "Charlie"
+end
+#+END_SRC
+
+*** `@class` - Defining Custom Types
+
+#+BEGIN_SRC lua
+---@class User
+---@field name string
+---@field email string
+---@field age? number
+---@field scores number[]
+
+---@param user User
+function processUser(user)
+	print(user.name) -- Autocomplete works here!
+end
+
+--- Class inheritance
+---@class Admin: User
+---@field permissions string[]
+#+END_SRC
+
+*** `@alias` - Type Aliases and Enums
+
+#+BEGIN_SRC lua
+--- Simple type alias
+---@alias UserID integer
+
+--- Union type alias
+---@alias Status "active" | "inactive" | "pending"
+
+--- Enum with descriptions
+---@alias Color
+---| '"red"'    # Primary color red
+---| '"green"'  # Primary color green
+---| '"blue"'   # Primary color blue
+
+---@param favoriteColor Color
+function setColor(favoriteColor) end
+#+END_SRC
+
+*** `@enum` - Runtime Enums
+
+#+BEGIN_SRC lua
+---@enum LogLevel
+local LOG_LEVELS = {
+	DEBUG = 1,
+	INFO = 2,
+	WARN = 3,
+	ERROR = 4,
+}
+
+---@param level LogLevel
+function logMessage(level, message) end
+
+logMessage(LOG_LEVELS.INFO, "System started") -- Type-safe!
+#+END_SRC
+
+** Advanced Annotations
+
+*** `@generic` - Generic Types
+
+#+BEGIN_SRC lua
+--- Generic function
+---@generic T
+---@param item T
+---@return T
+function identity(item)
+	return item
+end
+
+--- Generic class
+---@class Container<T>
+---@field value T
+
+---@type Container<string>
+local stringContainer = { value = "hello" }
+#+END_SRC
+
+*** `@overload` - Function Overloading
+
+#+BEGIN_SRC lua
+---@param name string
+---@param age number
+---@return User
+---@overload fun(name: string): User
+---@overload fun(id: number): User
+function createUser(name, age) end
+
+-- All these calls are valid:
+local user1 = createUser("Alice", 30)
+local user2 = createUser("Bob")
+local user3 = createUser(123)
+#+END_SRC
+
+*** `@async` - Asynchronous Functions
+
+#+BEGIN_SRC lua
+---@async
+---@param url string
+---@return string response
+function fetchData(url) end
+
+-- Language server will show "await" hint
+local data = fetchData("https://api.example.com/data")
+#+END_SRC
+
+*** `@diagnostic` - Controlling Error Reporting
+
+#+BEGIN_SRC lua
+--- Disable specific diagnostics
+---@diagnostic disable-next-line: unused-local
+local unusedVariable = 42
+
+--- Enable spell checking in file
+---@diagnostic enable: spell-check
+#+END_SRC
