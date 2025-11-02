@@ -29,15 +29,16 @@ LuaLS recognizes all standard Lua types, such as `nil`, `any`, `boolean`, `strin
 
 ** Advanced Type Expressions
 
-| Type Pattern  | Example                         | Description             |
-| ------------- + ------------------------------- + ----------------------- |
-| Union Type    | `string\|number`                | Multiple possible types |
-| Array         | `string[]`                      | Array of specific type  |
-| Dictionary    | `{ [string]: boolean }`         | String-keyed dictionary |
-| Key-Value     | `table<KEY, VALUE>`             | Generic table type      |
-| Table Literal | `{ name: string, age: number }` | Structured table        |
-| Function      | `fun(param: string): boolean`   | Function signature      |
-| Optional      | `string?`                       | Same as `string\|nil`   |
+| Type Pattern  | Example                      | Description                |
+|---------------+------------------------------+----------------------------|
+| Union Type    | ~string\vert{}number~        | Multiple possible types    |
+| Array         | ~string[]~                   | Array of specific types    |
+| Dictionary    | ~{[string]:boolean}~         | String-keyed dictionary    |
+| Key-Value     | ~table<KEY,VALUE>~           | Generic table type         |
+| Table Literal | ~{name:string, age:number}~  | Structured table           |
+| Function      | ~fun(param:string): boolean~ | Function signature         |
+| Optional      | ~string?~                    | Same as ~string\vert{}nil~ |
+
 
 ** Essential Annotations with Examples
 
