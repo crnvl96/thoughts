@@ -1,26 +1,25 @@
-+++
-date = '2025-10-10'
-draft = true
-title = 'Building a JSX Transpiler with Vite'
-+++
+#+TITLE: Building a JSX Transpiler with Vite
+#+DATE: 2025-10-10
+#+DRAFT: false
+#+TAGS[]: vite javascript programming
 
-## Step 1: Vite Setup
+* Vite Setup
 
 Bootstrap a new vite project using vanilla template.
 
-```bash
+#+BEGIN_SRC bash
 npm create vite@latest jsx-renderer-vite -- --template vanilla
-```
+#+END_SRC
 
 Enter the project and install the dependencies
 
-```bash
+#+BEGIN_SRC bash
 cd jsx-renderer-vite && npm install
-```
+#+END_SRC
 
 Then, adjust the project files so that the final structure is like this
 
-```
+#+BEGIN_SRC terminal
 .
 ├── src/
 │   └── main.jsx
@@ -29,11 +28,11 @@ Then, adjust the project files so that the final structure is like this
 ├── package-lock.json
 ├── package.json
 └── vite.config.js
-```
+#+END_SRC
 
 The following files are important for this setup process
 
-```javascript
+#+BEGIN_SRC javascript
 // vite.config.js
 
 import * as v from "vite";
@@ -46,9 +45,9 @@ export default v.defineConfig({
     jsxFragment: "Fragment",
   },
 });
-```
+#+END_SRC
 
-```json
+#+BEGIN_SRC json
 // package.json
 
 {
@@ -65,9 +64,9 @@ export default v.defineConfig({
     "vite": "^7.1.7"
   }
 }
-```
+#+END_SRC
 
-```html
+#+BEGIN_SRC html
 <!-- index.html -->
 
 <!doctype html>
@@ -83,13 +82,13 @@ export default v.defineConfig({
     <script type="module" src="src/main.jsx"></script>
   </body>
 </html>
-```
+#+END_SRC
 
-## Step 2: Creating the `h` Function
+* Creating the `h` Function
 
 Now let's implement the `h()` function that esbuild will call for each JSX element.
 
-```javascript
+#+BEGIN_SRC javascript
 // main.jsx
 
 function h(nodeName, attributes, ...args) {
@@ -98,19 +97,19 @@ function h(nodeName, attributes, ...args) {
   if (args.length) vnode.children = [].concat(...args);
   return vnode;
 }
-```
+#+END_SRC
 
 This function creates a virtual DOM node object with:
 
-- `nodeName`: The HTML tag name (e.g., "div")
-- `attributes`: An object of element attributes (optional)
-- `children`: An array of child nodes (text or other virtual nodes)
+- ~nodeName~: The HTML tag name (e.g., "div")
+- ~attributes~: An object of element attributes (optional)
+- ~children~: An array of child nodes (text or other virtual nodes)
 
-The `...args` syntax collects all remaining arguments into an array, and `[].concat(...args)` flattens nested arrays.
+The ~...args~ syntax collects all remaining arguments into an array, and ~[].concat(...args)~ flattens nested arrays.
 
-## Step 3: Writing the First JSX
+* Writing the First JSX
 
-```javascript
+#+BEGIN_SRC javascript
 // main.jsx
 
 function h(nodeName, attributes, ...args) {
@@ -122,15 +121,15 @@ function h(nodeName, attributes, ...args) {
 
 const element = <div>Hello World</div>;
 console.log(element);
-```
+#+END_SRC
 
-Run `npm run dev` to start Vite's development server. Vite will automatically transpile the JSX and you can see the result in the browser console.
+Run ~npm run dev~ to start Vite's development server. Vite will automatically transpile the JSX and you can see the result in the browser console.
 
-## Step 4: Implementing the DOM Renderer
+* Implementing the DOM Renderer
 
-Now let's implement the function to convert our virtual DOM nodes into real DOM elements. Add the renderer to `src/main.jsx`:
+Now let's implement the function to convert our virtual DOM nodes into real DOM elements. Add the renderer to ~src/main.jsx~:
 
-```javascript
+#+BEGIN_SRC javascript
 // main.jsx
 
 function h(nodeName, attributes, ...args) {
@@ -188,19 +187,19 @@ const vdom = (
 );
 
 document.body.appendChild(render(vdom));
-```
+#+END_SRC
 
-The `ItemList` function returns JSX, which Vite transpiles to `h()` calls. The `{items.map(...)}` expression gets embedded directly in the transpiled code. Vite's fast refresh will update the component instantly when you make changes.
+The ~ItemList~ function returns JSX, which Vite transpiles to `h()` calls. The ~{items.map(...)}~ expression gets embedded directly in the transpiled code. Vite's fast refresh will update the component instantly when you make changes.
 
-## Advanced JSX Features
+* Advanced JSX Features
 
 Our renderer can be extended to support modern JSX features. Below are working examples for each feature.
 
-### JSX Fragments
+** JSX Fragments
 
 To support JSX fragments, define a Fragment component and update the render function to handle it:
 
-```javascript
+#+BEGIN_SRC javascript
 // main.jsx
 
 function h(nodeName, attributes, ...args) {
@@ -242,13 +241,13 @@ const component = (
 );
 
 document.body.appendChild(render(component));
-```
+#+END_SRC
 
-### Conditional Rendering
+** Conditional Rendering
 
 Conditional rendering uses JavaScript expressions in JSX. This example includes a toggle button to demonstrate dynamic conditional rendering:
 
-```javascript
+#+BEGIN_SRC javascript
 // main.jsx
 
 function h(nodeName, attributes, ...args) {
@@ -303,13 +302,13 @@ const App = () => (
 );
 
 document.body.appendChild(render(<App />));
-```
+#+END_SRC
 
-### Event Handling
+** Event Handling
 
 To handle events, update the render function to attach event listeners for attributes starting with "on". This example demonstrates a clickable counter:
 
-```javascript
+#+BEGIN_SRC javascript
 // main.jsx
 
 function h(nodeName, attributes, ...args) {
@@ -356,4 +355,4 @@ const InteractiveComponent = () => (
 );
 
 document.body.appendChild(render(<InteractiveComponent />));
-```
+#+END_SRC
