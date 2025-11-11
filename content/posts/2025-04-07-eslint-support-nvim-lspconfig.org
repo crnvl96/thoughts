@@ -1,7 +1,7 @@
 #+TITLE: Contributing ESLint Support to nvim-lspconfig
 #+DATE: 2025-04-27
 #+DRAFT: false
-#+TAGS[]: neovim programming 
+#+TAGS[]: neovim programming
 
 My recent contribution to the [[https://github.com/neovim/nvim-lspconfig][neovim/nvim-lspconfig]] repository adds comprehensive eslint language server support using the modern `vim.lsp.config` api. this pull request addresses [[https://github.com/neovim/nvim-lspconfig/issues/3705][issue #3075]].
 
