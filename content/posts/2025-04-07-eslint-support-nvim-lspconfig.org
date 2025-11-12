@@ -1,15 +1,14 @@
 #+TITLE: Contributing ESLint Support to nvim-lspconfig
 #+DATE: 2025-04-27
 #+DRAFT: false
-#+TAGS[]: neovim programming
 
-My recent contribution to the [[https://github.com/neovim/nvim-lspconfig][neovim/nvim-lspconfig]] repository adds comprehensive eslint language server support using the modern `vim.lsp.config` api. this pull request addresses [[https://github.com/neovim/nvim-lspconfig/issues/3705][issue #3075]].
+My recent contribution to the [[https://github.com/neovim/nvim-lspconfig][neovim/nvim-lspconfig]] repository adds comprehensive [[https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://eslint.org/&ved=2ahUKEwjH_Kzy1u2QAxUwALkGHSjBNWQQFnoECA8QAQ&usg=AOvVaw3BGEnWIUCsLA7AsBnz99Wm][eslint]] language server support using the modern [[https://neovim.io/doc/user/lsp.html#vim.lsp.config()][vim.lsp.config]] api. this pull request addresses [[https://github.com/neovim/nvim-lspconfig/issues/3705][issue #3075]].
 
 #+begin_quote
 Check out the [[https://github.com/neovim/nvim-lspconfig/pull/3731][pull request #3731]]
 #+end_quote on GitHub
 
-nvim-lspconfig is the official Neovim plugin that provides quickstart configurations for Language Server Protocol (LSP) clients. With the release of Neovim 0.11, the project has been transitioning from the legacy `require'lspconfig'.setup{}` pattern to the new `vim.lsp.config` API. This modernization effort requires updating all existing configurations to use the new pattern.
+nvim-lspconfig is the official Neovim plugin that provides quickstart configurations for Language Server Protocol (LSP) clients. With the release of [[https://neovim.io/news/2025/03][Neovim 0.11]], the project has been transitioning from the legacy ~require'lspconfig'.setup{}~ pattern to the new ~vim.lsp.config~ API. This modernization effort requires updating all existing configurations to use the new pattern.
 
 The ESLint configuration was one of the remaining configurations that needed to be ported to the new API. [[https://github.com/neovim/nvim-lspconfig/issues/3705][Issue #3705]] specifically tracked this migration task, and my contribution accomplishes this transition for the [[https://eslint.org/ESLint][eslint]] language server.
 
@@ -45,10 +44,3 @@ return {
 	-- ... additional configuration
 }
 #+end_src
-
-Contributing to a major project like nvim-lspconfig was a valuable experience that highlighted several aspects of open-source development:
-
-1. **Importance of Following Conventions**: Adhering to project style guides and patterns
-2. **Thorough Testing**: Ensuring compatibility across different environments
-3. **Clear Communication**: Providing context and rationale for implementation choices
-4. **Responsive Collaboration**: Addressing review feedback promptly and effectively

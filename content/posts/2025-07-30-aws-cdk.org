@@ -1,7 +1,6 @@
 #+TITLE: Event-Driven Architectures with AWS CDK
 #+DATE: 2025-07-30
 #+DRAFT: false
-#+TAGS[]: programming aws
 
 ** Preamble
 
