@@ -1,0 +1,56 @@
+baseurl = "https://crnvl96.dev/"
+languageCode = "en-us"
+theme = "terminal"
+pagination.pagerSize = 5
+
+[markup.highlight]
+  noClasses = false
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      [markup.goldmark.extensions.passthrough]
+        enable = true
+        [markup.goldmark.extensions.passthrough.delimiters]
+          block = [['\[', '\]'], ['$$', '$$']]
+          inline = [['\(', '\)']]
+
+[params]
+  math = true
+  contentTypeName = "posts"
+  showMenuItems = 2
+  showLanguageSelector = false
+  fullWidthTheme = false
+  centerTheme = true
+  autoCover = true
+  showLastUpdated = false
+  readingTime = true
+  Toc = true
+
+[params.twitter]
+  creator = ""
+  site = ""
+
+[languages]
+  [languages.en]
+    languageName = "English"
+    title = "Terminal"
+
+    [languages.en.params]
+      subtitle = "A simple, retro theme for Hugo"
+      owner = ""
+      keywords = ""
+      copyright = ""
+      menuMore = "Show more"
+      readMore = "Read more"
+      readOtherPosts = "Read other posts"
+      newerPosts = "Newer posts"
+      olderPosts = "Older posts"
+      missingContentMessage = "Page not found..."
+      missingBackButtonLabel = "Back to home page"
+      minuteReadingTime = "min read"
+      words = "words"
+
+      [languages.en.params.logo]
+        logoText = "Terminal"
+        logoHomeLink = "/"
