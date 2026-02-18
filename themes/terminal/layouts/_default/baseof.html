@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="{{ $.Site.Language }}">
 <head>
+  {{ if .Param "math" }}
+    {{ partialCached "math.html" . }}
+  {{ end }}
   {{ block "title" . }}
     <title>{{ if .IsHome }}{{ $.Site.Title }}{{ else }}{{ .Title }} :: {{ $.Site.Title }}{{ end }}</title>
   {{ end }}
