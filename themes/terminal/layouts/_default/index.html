@@ -7,9 +7,9 @@
   <div class="posts">
     {{ $ctx := . }}
     {{ if .IsHome }}{{ $ctx = .Site }}{{ end }}
-    {{ $paginator := .Paginate (where $ctx.RegularPages "Type" "posts") }}
+    {{ $pages := where $ctx.RegularPages "Type" "posts" }}
 
-    {{ range $paginator.Pages }}
+    {{ range $pages }}
       <article class="post on-list">
         <h2 class="post-title">
           <a href="{{ .Permalink }}">{{ .Title | markdownify }}</a>
@@ -30,7 +30,5 @@
         </div>
       </article>
     {{ end }}
-
-    {{ partial "pagination.html" . }}
   </div>
 {{ end }}

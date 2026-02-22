@@ -9,13 +9,6 @@
     {{- end -}}
   </div>
 
-  {{ if (default true .Params.Toc) }}
-    <div class="table-of-contents">
-      <h2>Table of Contents</h2>
-      {{ .TableOfContents }}
-    </div>
-  {{ end }}
-
   <div class="post-content">
     {{ .Content }}
   </div>

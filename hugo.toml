@@ -1,7 +1,6 @@
 baseurl = "https://crnvl96.dev/"
 languageCode = "en-us"
 theme = "terminal"
-pagination.pagerSize = 5
 
 [markup]
   [markup.highlight]

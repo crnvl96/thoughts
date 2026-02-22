@@ -5,7 +5,7 @@
     </div>
   {{ end }}
   <div class="posts">
-    {{ range .Paginator.Pages }}
+    {{ range .Pages }}
       <article class="post on-list">
         <h2 class="post-title">
           <a href="{{ .Permalink }}">{{ .Title | markdownify }}</a>
@@ -25,7 +25,5 @@
         </div>
       </article>
     {{ end }}
-
-    {{ partial "pagination.html" . }}
   </div>
 {{ end }}
