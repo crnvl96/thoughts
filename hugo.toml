@@ -1,4 +1,44 @@
+title = "Thoughts"
 baseurl = "https://crnvl96.dev/"
 languageCode = "en-us"
-theme = "acme"
-title = "Thoughts"
+pagination.pagerSize = 5
+
+[markup.highlight]
+  noClasses = false
+
+[params]
+  contentTypeName = "posts"
+  showMenuItems = 2
+  showLanguageSelector = false
+  fullWidthTheme = false
+  centerTheme = true
+  autoCover = false
+  showLastUpdated = false
+
+[languages]
+  [languages.en]
+    languageName = "English"
+    title = "Terminal"
+
+    [languages.en.params]
+      subtitle = ""
+      owner = ""
+      keywords = ""
+      copyright = ""
+      menuMore = "Show more"
+      readMore = "Read more"
+      readOtherPosts = "Read other posts"
+      newerPosts = "Newer posts"
+      olderPosts = "Older posts"
+      missingContentMessage = "Page not found..."
+      missingBackButtonLabel = "Back to home page"
+      minuteReadingTime = "min read"
+      words = "words"
+
+      [languages.en.params.logo]
+        logoText = "Terminal"
+        logoHomeLink = "/"
+
+[module]
+[[module.imports]]
+  path = 'github.com/panr/hugo-theme-terminal/v4'
