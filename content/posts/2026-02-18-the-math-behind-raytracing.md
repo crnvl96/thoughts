@@ -45,9 +45,9 @@ void FillCircle(SDL_Surface *surface, struct Circle circle, Uint32 color) {
 
 First of all, is important to know that the equation that describes a circle is:
 
-![Circle Equation](/img/circle-equation.png)
+![Circle Equation](/img/the-math-behind-raytracing/circle-equation-big.png)
 
-![Equation of a circle](/img/circle.png)
+![Equation of a circle](/img/the-math-behind-raytracing/circle.png)
 
 Now, let's rewrite the cove above in a different way, more like a pseudocode
 
