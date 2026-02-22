@@ -6,15 +6,15 @@ date = "2025-09-11"
 # Introduction
 
 In the world of Neovim plugin development. One of superpowers enabled by the Lua language
-in Neovim is type annotations using EmmyLua-style comments (`---@`).
+in Neovim is type annotations using EmmyLua-style comments (_---@_).
 These annotations supercharge documentation, IDE integration, and code readability.
 
-In `lazydocker.nvim`, a plugin that embeds [LazyDocker](https://github.com/jesseduffield/lazydocker)
+In _lazydocker.nvim_, a plugin that embeds [LazyDocker](https://github.com/jesseduffield/lazydocker)
 into a Neovim floating window, I extensively used these annotations.
 
 # Lua Type Annotations
 
-Lua is dynamically typed, but Neovim's LSP (via `nvim-lspconfig` and `emmy-lua`) supports EmmyLua annotations:
+Lua is dynamically typed, but Neovim's LSP (via _nvim-lspconfig_ and _emmy-lua_) supports EmmyLua annotations:
 
 ```
 ---@class MyClass
@@ -27,9 +27,9 @@ function myFunc(param) end
 
 These generate:
 
-- **Hover docs** in Neovim (`K`)
+- **Hover docs** in Neovim (_K_)
 - **Autocomplete** for fields/methods
-- **Vim help pages** (`:help lazydocker.nvim`)
+- **Vim help pages** (_:help lazydocker.nvim_)
 - **Type checking** warnings
 
 # Type Hierarchy in lazydocker.nvim
@@ -75,7 +75,7 @@ local config = { window = { settings = { width = 0.618 } } }
 require('lazydocker').setup(config)
 ```
 
-With types (hover `config` generates a full schema!):
+With types (hover _config_ generates a full schema!):
 
 ```lua
 local config: LazyDocker.Config = {
@@ -98,20 +98,20 @@ vim.validate({ ['width'] = { settings.width, H._is_percentage, '0-1' } })
 # Supercharged IDE Features
 
 1. **Autocomplete Everywhere**:
-   - Type `LazyDocker.config.window.settings.` generates a popup with `width|height|border|relative`.
-   - `LazyDocker.open({ engine = '` generates an autocompletion with `'docker'|'podman'`.
+   - Type _LazyDocker.config.window.settings._ generates a popup with _width|height|border|relative_.
+   - _LazyDocker.open({ engine = '_ generates an autocompletion with _'docker'|'podman'_.
 
-2. **Hover Documentation** (hit `K`):
-   - On `LazyDocker.open`: Full `@usage` examples + param types.
-   - Cross-references like `|LazyDocker.config|` link to help sections.
+2. **Hover Documentation** (hit _K_):
+   - On _LazyDocker.open_: Full _@usage_ examples + param types.
+   - Cross-references like _|LazyDocker.config|_ link to help sections.
 
 3. **Error Prevention**:
-   - LSP warns: `opts.engine` must be `'docker'|'podman'`.
-   - Invalid `border = 'invalid'` → squiggles + message.
+   - LSP warns: _opts.engine_ must be _'docker'|'podman'_.
+   - Invalid _border = 'invalid'_ generates an error message.
 
 4. **Help Integration**:
-   ```
-   * |LazyDocker.types|
-   * |LazyDocker.setup|
-   ```
-   `:help LazyDocker.types` renders the `@class` docs beautifully.
+   ***
+   - |LazyDocker.types|
+   - |LazyDocker.setup|
+   ***
+   _:help LazyDocker.types_ renders the _@class_ docs beautifully.

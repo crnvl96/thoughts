@@ -13,8 +13,8 @@ api. this pull request addresses [issue #3075](https://github.com/neovim/nvim-ls
 
 nvim-lspconfig is the official Neovim plugin that provides quickstart configurations
 for Language Server Protocol (LSP) clients. With the release of [Neovim 0.11](https://neovim.io/news/2025/03),
-the project has been transitioning from the legacy `require'lspconfig'.setup{}` pattern to the new
-`vim.lsp.config` API. This modernization efforttt requires updating all
+the project has been transitioning from the legacy _require'lspconfig'.setup{}_ pattern to the new
+_vim.lsp.config_ API. This modernization efforttt requires updating all
 existing configurations to use the new pattern.
 
 The ESLint configuration was one of the remaining configurations that

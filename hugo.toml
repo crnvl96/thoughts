@@ -1,21 +1,4 @@
 baseurl = "https://crnvl96.dev/"
 languageCode = "en-us"
-theme = "terminal"
-
-[markup]
-  [markup.highlight]
-    noClasses = false
-  [markup.goldmark]
-    [markup.goldmark.extensions]
-      [markup.goldmark.extensions.passthrough]
-        enable = true
-        [markup.goldmark.extensions.passthrough.delimiters]
-          block = [['\[', '\]'], ['$$', '$$']]
-          inline = [['\(', '\)']]
-
-[params]
-  math = true
-
-[languages.en]
-  languageName = "English"
-  title = "Terminal"
+theme = "acme"
+title = "Thoughts"

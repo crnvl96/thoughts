@@ -1,0 +1,185 @@
+/* Acme (Plan 9) inspired palette */
+:root {
+  --acme-bg: #ffffcc;
+  --acme-tag: #e8e0a0;
+  --acme-text: #000000;
+  --acme-link: #0000ff;
+  --acme-visited: #551a8b;
+  --acme-border: #000000;
+  /* Dark Acme palette for code */
+  --acme-code-bg: #3d3829;
+  --acme-code-text: #e8e0a0;
+  --acme-code-border: #5a5544;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--acme-bg);
+  color: var(--acme-text);
+  font-family: "Lucida Console", "Monaco", "Consolas", monospace;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.wrap {
+  max-width: 90ch;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.tag {
+  background: var(--acme-tag);
+  border-bottom: 1px solid var(--acme-border);
+  padding: 0.25rem 0;
+  margin: 0 -1rem 1rem -1rem;
+  padding-left: 1rem;
+}
+
+.tag a {
+  color: var(--acme-text);
+  text-decoration: underline;
+}
+
+.tag a:hover {
+  color: var(--acme-link);
+  text-decoration: underline;
+}
+
+.tag-sep {
+  margin: 0 0.5rem;
+  color: var(--acme-border);
+}
+
+.content {
+  padding: 0;
+}
+
+.posts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.posts li {
+  border-bottom: 1px solid var(--acme-border);
+  padding: 0.5rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.posts li a {
+  color: var(--acme-link);
+  text-decoration: underline;
+}
+
+.posts li a:hover {
+  text-decoration: underline;
+}
+
+.posts time {
+  flex-shrink: 0;
+  color: var(--acme-text);
+}
+
+.post h1 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin: 0 0 0.25rem 0;
+}
+
+.post-date {
+  display: block;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.post-body {
+  margin-bottom: 2rem;
+}
+
+.post-body p {
+  margin: 0 0 1rem 0;
+}
+
+.post-body h2,
+.post-body h3,
+.post-body h4 {
+  margin: 1.5rem 0 0.5rem 0;
+  font-size: 1rem;
+}
+
+.post-body ul,
+.post-body ol {
+  margin: 0 0 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.post-body pre,
+.post-body code,
+.post-body .highlight,
+.post-body .highlight pre,
+.post-body .highlight code {
+  background: var(--acme-code-bg) !important;
+  color: var(--acme-code-text) !important;
+  font-size: 0.95em;
+}
+
+.post-body pre,
+.post-body .highlight pre {
+  max-width: 100%;
+  padding: 0.75rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  border: 1px solid var(--acme-code-border);
+  background: var(--acme-code-bg);
+}
+
+.post-body code {
+  padding: 0.1em 0.3em;
+}
+
+.post-body pre code {
+  padding: 0;
+  background: none !important;
+  color: inherit;
+}
+
+/* Force Acme dark palette for Chroma syntax highlighting */
+.post-body .highlight .chroma,
+.post-body .highlight .chroma span {
+  background: transparent !important;
+  color: var(--acme-code-text) !important;
+}
+
+.post-body img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1.5rem auto;
+}
+
+.back {
+  margin: 0;
+  padding-top: 1rem;
+  border-top: 1px solid var(--acme-border);
+}
+
+a {
+  color: var(--acme-link);
+  text-decoration: underline;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:visited {
+  color: var(--acme-visited);
+}

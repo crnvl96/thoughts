@@ -1,0 +1,15 @@
+{{ define "main" }}
+<header class="tag">
+    <a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+</header>
+<main class="content">
+    <ul class="posts">
+        {{ range .Pages }}
+        <li>
+            <a href="{{ .Permalink }}">{{ .Title }}</a>
+            <time>{{ .Date.Format "2006-01-02" }}</time>
+        </li>
+        {{ end }}
+    </ul>
+</main>
+{{ end }}

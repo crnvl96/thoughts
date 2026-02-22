@@ -38,12 +38,12 @@ The following files are important for this setup process
 import * as v from "vite";
 
 export default v.defineConfig({
-  esbuild: {
-    // use h as the JSX Factory function instead of React.createElement
-    jsxFactory: "h",
-    // use Fragment for JSX fragments (<>)
-    jsxFragment: "Fragment",
-  },
+    esbuild: {
+        // use h as the JSX Factory function instead of React.createElement
+        jsxFactory: "h",
+        // use Fragment for JSX fragments (<>)
+        jsxFragment: "Fragment",
+    },
 });
 ```
 
@@ -84,19 +84,19 @@ export default v.defineConfig({
 </html>
 ```
 
-# Creating the `h` Function
+# Creating the **h** Function
 
-Now let's implement the `h()` function that esbuild will call for each
+Now let's implement the _h()_ function that esbuild will call for each
 JSX element.
 
 ```javascript
 // main.jsx
 
 function h(nodeName, attributes, ...args) {
-  let vnode = { nodeName };
-  if (attributes) vnode.attributes = attributes;
-  if (args.length) vnode.children = [].concat(...args);
-  return vnode;
+    let vnode = { nodeName };
+    if (attributes) vnode.attributes = attributes;
+    if (args.length) vnode.children = [].concat(...args);
+    return vnode;
 }
 ```
 
@@ -106,8 +106,8 @@ This function creates a virtual DOM node object with:
 - attributes: An object of element attributes (optional)
 - children: An array of child nodes (text or other virtual nodes)
 
-The `...args` syntax collects all remaining arguments into
-an array, and `[].concat(...args)` flattens nested arrays.
+The _...args_ syntax collects all remaining arguments into
+an array, and _[].concat(...args)_ flattens nested arrays.
 
 # Writing the First JSX
 
@@ -115,85 +115,85 @@ an array, and `[].concat(...args)` flattens nested arrays.
 // main.jsx
 
 function h(nodeName, attributes, ...args) {
-  let vnode = { nodeName };
-  if (attributes) vnode.attributes = attributes;
-  if (args.length) vnode.children = [].concat(...args);
-  return vnode;
+    let vnode = { nodeName };
+    if (attributes) vnode.attributes = attributes;
+    if (args.length) vnode.children = [].concat(...args);
+    return vnode;
 }
 
 const element = <div>Hello World</div>;
 console.log(element);
 ```
 
-Run `npm run dev` to start Vite's development server. Vite will automatically
+Run _npm run dev_ to start Vite's development server. Vite will automatically
 transpile the JSX and you can see the result in the browser console.
 
 # Implementing the DOM Renderer
 
 Now let's implement the function to convert our virtual DOM nodes into
-real DOM elements. Add the renderer to `src/main.jsx`:
+real DOM elements. Add the renderer to _src/main.jsx_:
 
 ```javascript
 // main.jsx
 
 function h(nodeName, attributes, ...args) {
-  let vnode = { nodeName };
-  if (attributes) vnode.attributes = attributes;
-  if (args.length) vnode.children = [].concat(...args);
-  return vnode;
+    let vnode = { nodeName };
+    if (attributes) vnode.attributes = attributes;
+    if (args.length) vnode.children = [].concat(...args);
+    return vnode;
 }
 
 // Function to render virtual DOM nodes to real DOM elements
 function render(vnode) {
-  // Handle text nodes
-  if (typeof vnode === "string") return document.createTextNode(vnode);
+    // Handle text nodes
+    if (typeof vnode === "string") return document.createTextNode(vnode);
 
-  // Handle functional components
-  if (typeof vnode.nodeName === "function") {
-    const componentVnode = vnode.nodeName(vnode.attributes || {});
-    return render(componentVnode);
-  }
+    // Handle functional components
+    if (typeof vnode.nodeName === "function") {
+        const componentVnode = vnode.nodeName(vnode.attributes || {});
+        return render(componentVnode);
+    }
 
-  // Create DOM element
-  let n = document.createElement(vnode.nodeName);
+    // Create DOM element
+    let n = document.createElement(vnode.nodeName);
 
-  // Set attributes
-  Object.keys(vnode.attributes || {}).forEach((k) =>
-    n.setAttribute(k, vnode.attributes[k]),
-  );
+    // Set attributes
+    Object.keys(vnode.attributes || {}).forEach((k) =>
+        n.setAttribute(k, vnode.attributes[k]),
+    );
 
-  // Render and append children
-  (vnode.children || []).forEach((c) => n.appendChild(render(c)));
+    // Render and append children
+    (vnode.children || []).forEach((c) => n.appendChild(render(c)));
 
-  return n;
+    return n;
 }
 
 const ITEMS = "some random content".split(" ");
 
 // A functional component that returns JSX
 function ItemList({ items }) {
-  return (
-    <ul>
-      {items.map((item) => (
-        <li>{item}</li>
-      ))}
-    </ul>
-  );
+    return (
+        <ul>
+            {items.map((item) => (
+                <li>{item}</li>
+            ))}
+        </ul>
+    );
 }
 
 // Main JSX structure
 const vdom = (
-  <div id="app">
-    <h1>JSX Renderer Demo</h1>
-    <p>Look, a simple JSX DOM renderer!</p>
-    <ItemList items={ITEMS} />
-  </div>
+    <div id="app">
+        <h1>JSX Renderer Demo</h1>
+        <p>Look, a simple JSX DOM renderer!</p>
+        <ItemList items={ITEMS} />
+    </div>
 );
 
 document.body.appendChild(render(vdom));
 ```
 
-The `ItemList` function returns JSX, which Vite transpiles to `h()~`
-calls. The `{items.map(...)}` expression gets embedded directly in the
+The _ItemList_ function returns JSX, which Vite transpiles to _h()~_
+calls. The _{items.map(...)}_ expression gets embedded directly in the
 transpiled code. Vite's fast refresh will update the component
 instantly when you make changes.
