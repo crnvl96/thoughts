@@ -10,9 +10,7 @@
   {{ partial "head.html" . }}
 </head>
 <body>
-{{ $container := cond ($.Site.Params.FullWidthTheme | default false) "container full" (cond ($.Site.Params.CenterTheme | default false) "container center" "container") }}
-
-<div class="{{- $container -}}{{- cond ($.Site.Params.oneHeadingSize | default false) " headings--one-size" "" }}">
+<div class="container center">
 
   {{ partial "header.html" . }}
 
@@ -21,9 +19,7 @@
     {{ end }}
   </div>
 
-  {{ block "footer" . }}
-    {{ partial "footer.html" . }}
-  {{ end }}
+  {{ partial "footer.html" . }}
 </div>
 
 </body>

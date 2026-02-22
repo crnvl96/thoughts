@@ -12,42 +12,17 @@
         </h2>
         <div class="post-meta">
           {{- if .Date -}}
-            <time class="post-date">
-              {{- partial "post-date" . -}}
-            </time>
-          {{- end -}}
-          {{- with .Params.Author -}}
-            <span class="post-author">{{- . -}}</span>
+            <time class="post-date">{{ partial "post-date" . }}</time>
           {{- end -}}
         </div>
-
-        {{ if .Params.tags }}
-          <span class="post-tags">
-            {{ range .Params.tags }}
-            #<a href="{{ (urlize (printf "tags/%s/" . )) | absLangURL }}">
-              {{- . -}}
-            </a>&nbsp;
-            {{ end }}
-          </span>
-        {{ end }}
-
-        {{ partial "cover.html" . }}
 
         <div class="post-content">
-          {{ if .Params.showFullContent }}
-            {{ .Content }}
-          {{ else if .Description }}
-            <p>{{ .Description | markdownify }}</p>
-          {{ else }}
-            {{ .Summary }}
-          {{ end }}
+          {{ .Summary }}
         </div>
 
-        {{ if not .Params.showFullContent }}
-           <div>
-            <a class="read-more button inline" href="{{ .RelPermalink }}">[{{ $.Site.Params.ReadMore }}]</a>
-          </div>
-        {{ end }}
+        <div>
+          <a class="read-more button inline" href="{{ .RelPermalink }}">[Read more]</a>
+        </div>
       </article>
     {{ end }}
 
