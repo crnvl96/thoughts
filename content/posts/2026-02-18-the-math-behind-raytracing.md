@@ -45,9 +45,7 @@ void FillCircle(SDL_Surface *surface, struct Circle circle, Uint32 color) {
 
 First of all, is important to know that the equation that describes a circle is:
 
-$$
-\large (x - h)^2 + (y - k)^2 = r^2
-$$
+![Circle Equation](/img/circle-equation.png)
 
 ![Equation of a circle](/img/circle.png)
 
