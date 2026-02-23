@@ -1,3 +1,2 @@
-const t = "a";
-
-console.log(t);
+console.log(a);
+var a = 1;
